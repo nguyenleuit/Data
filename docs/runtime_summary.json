@@ -1,0 +1,164 @@
+[
+  {
+    "cve_id": "CVE-2026-32748",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-32748/manifest.yml",
+    "artifact": "src/high/CVE-2026-32748/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-32746",
+    "runtime_validation": "pass",
+    "manifest": "src/critical/CVE-2026-32746/manifest.yml",
+    "artifact": "src/critical/CVE-2026-32746/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-32538",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-32538/manifest.yml",
+    "artifact": "src/high/CVE-2026-32538/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-32524",
+    "runtime_validation": "pass",
+    "manifest": "src/critical/CVE-2026-32524/manifest.yml",
+    "artifact": "src/critical/CVE-2026-32524/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-32519",
+    "runtime_validation": "pass",
+    "manifest": "src/critical/CVE-2026-32519/manifest.yml",
+    "artifact": "src/critical/CVE-2026-32519/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-32482",
+    "runtime_validation": "pass",
+    "manifest": "src/critical/CVE-2026-32482/manifest.yml",
+    "artifact": "src/critical/CVE-2026-32482/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-29000",
+    "runtime_validation": "pass",
+    "manifest": "src/critical/CVE-2026-29000/manifest.yml",
+    "artifact": "src/critical/CVE-2026-29000/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-27944",
+    "runtime_validation": "pass",
+    "manifest": "src/critical/CVE-2026-27944/manifest.yml",
+    "artifact": "src/critical/CVE-2026-27944/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-27880",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-27880/manifest.yml",
+    "artifact": "src/high/CVE-2026-27880/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-27855",
+    "runtime_validation": "pass",
+    "manifest": "src/medium/CVE-2026-27855/manifest.yml",
+    "artifact": "src/medium/CVE-2026-27855/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-27734",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-27734/manifest.yml",
+    "artifact": "src/high/CVE-2026-27734/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-26352",
+    "runtime_validation": "pass",
+    "manifest": "src/medium/CVE-2026-26352/manifest.yml",
+    "artifact": "src/medium/CVE-2026-26352/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-26073",
+    "runtime_validation": "pass",
+    "manifest": "src/medium/CVE-2026-26073/manifest.yml",
+    "artifact": "src/medium/CVE-2026-26073/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-25887",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-25887/manifest.yml",
+    "artifact": "src/high/CVE-2026-25887/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-25361",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-25361/manifest.yml",
+    "artifact": "src/high/CVE-2026-25361/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-25116",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-25116/manifest.yml",
+    "artifact": "src/high/CVE-2026-25116/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-24512",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-24512/manifest.yml",
+    "artifact": "src/high/CVE-2026-24512/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-24061",
+    "runtime_validation": "pass",
+    "manifest": "src/critical/CVE-2026-24061/manifest.yml",
+    "artifact": "src/critical/CVE-2026-24061/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-23837",
+    "runtime_validation": "pass",
+    "manifest": "src/critical/CVE-2026-23837/manifest.yml",
+    "artifact": "src/critical/CVE-2026-23837/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-22804",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-22804/manifest.yml",
+    "artifact": "src/high/CVE-2026-22804/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-22265",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-22265/manifest.yml",
+    "artifact": "src/high/CVE-2026-22265/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-21858",
+    "runtime_validation": "pass",
+    "manifest": "src/critical/CVE-2026-21858/manifest.yml",
+    "artifact": "src/critical/CVE-2026-21858/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-4907",
+    "runtime_validation": "pass",
+    "manifest": "src/medium/CVE-2026-4907/manifest.yml",
+    "artifact": "src/medium/CVE-2026-4907/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-1642",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-1642/manifest.yml",
+    "artifact": "src/high/CVE-2026-1642/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-1580",
+    "runtime_validation": "pass",
+    "manifest": "src/high/CVE-2026-1580/manifest.yml",
+    "artifact": "src/high/CVE-2026-1580/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-1561",
+    "runtime_validation": "pass",
+    "manifest": "src/medium/CVE-2026-1561/manifest.yml",
+    "artifact": "src/medium/CVE-2026-1561/artifacts/runtime-validation.json"
+  },
+  {
+    "cve_id": "CVE-2026-1324",
+    "runtime_validation": "pass",
+    "manifest": "src/critical/CVE-2026-1324/manifest.yml",
+    "artifact": "src/critical/CVE-2026-1324/artifacts/runtime-validation.json"
+  }
+]

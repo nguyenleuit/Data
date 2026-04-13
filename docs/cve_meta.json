@@ -1,0 +1,955 @@
+[
+  {
+    "order": 1,
+    "line": "CVE-2026-32748  25/03/2026  HIGH (7.5)  Squid Web Proxy (< 7.5) Web Proxy Denial of Service (Use-After-Free)",
+    "cve_id": "CVE-2026-32748",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-32748",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-32748",
+      "vendor": [
+        "https://github.com/squid-cache/squid/security/advisories/GHSA-f9p7-3jqg-hhvq",
+        "http://www.openwall.com/lists/oss-security/2026/03/25/3"
+      ],
+      "upstream": [
+        "https://github.com/squid-cache/squid/commit/703e07d25ca6fa11f52d20bf0bb879e22ab7481b"
+      ],
+      "additional": []
+    },
+    "published": "2026-03-26",
+    "cvss_score": "7.5",
+    "attack_vector": "NETWORK",
+    "description": "Squid is a caching proxy for the Web. Prior to version 7.5, due to premature release of resource during expected lifetime and heap Use-After-Free bugs, Squid is vulnerable to Denial of Service when handling ICP traffic. This problem allows a remote attacker to perform a reliable and repeatable Denial of Service attack against the Squid service using ICP protocol. This attack is limited to Squid deployments that explicitly enable ICP support (i.e. configure non-zero `icp_port`). This problem _cannot_ be mitigated by denying ICP queries using `icp_access` rules. This bug is fixed in Squid version 7.5.",
+    "product_name": "squid",
+    "product_family": "squid-cache",
+    "vulnerable_version": "< 7.5",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 2,
+    "line": "CVE-2026-32746  13/03/2026  CRITICAL (9.8)  GNU InetUtils telnetd Network service Buffer Overflow",
+    "cve_id": "CVE-2026-32746",
+    "listed_severity": "critical",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-32746",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-32746",
+      "vendor": [],
+      "upstream": [],
+      "additional": [
+        "https://www.openwall.com/lists/oss-security/2026/03/12/4",
+        "https://lists.gnu.org/archive/html/bug-inetutils/2026-03/msg00031.html",
+        "http://www.openwall.com/lists/oss-security/2026/03/14/1",
+        "https://github.com/watchtowrlabs/watchtowr-vs-telnetd-CVE-2026-32746",
+        "source-not-found-in-session"
+      ]
+    },
+    "published": "2026-03-13",
+    "cvss_score": "9.8",
+    "attack_vector": "NETWORK",
+    "description": "telnetd in GNU inetutils through 2.7 allows an out-of-bounds write in the LINEMODE SLC (Set Local Characters) suboption handler because add_slc does not check whether the buffer is full.",
+    "product_name": "inetutils",
+    "product_family": "gnu",
+    "vulnerable_version": "0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 3,
+    "line": "CVE-2026-32538  25/03/2026  HIGH (7.5)  SMTP Mailer (<= 1.1.24) WordPress Plugin  Sensitive Data Exposure",
+    "cve_id": "CVE-2026-32538",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-32538",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-32538",
+      "vendor": [],
+      "upstream": [],
+      "additional": [
+        "https://patchstack.com/database/Wordpress/Plugin/smtp-mailer/vulnerability/wordpress-smtp-mailer-plugin-1-1-24-sensitive-data-exposure-vulnerability?_s_id=cve",
+        "source-not-found-in-session"
+      ]
+    },
+    "published": "2026-03-25",
+    "cvss_score": "7.5",
+    "attack_vector": "NETWORK",
+    "description": "Insertion of Sensitive Information Into Sent Data vulnerability in Noor Alam SMTP Mailer smtp-mailer allows Retrieve Embedded Sensitive Data.This issue affects SMTP Mailer: from n/a through <= 1.1.24.",
+    "product_name": "SMTP Mailer",
+    "product_family": "noor-alam",
+    "vulnerable_version": "n/a",
+    "fixed_version": "1.1.25",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 4,
+    "line": "CVE-2026-32524  25/03/2026  CRITICAL (9.1)  Photo Engine wplr-sync (<= 6.4.9) WordPress Plugin  Arbitrary File Upload (Web Shell)",
+    "cve_id": "CVE-2026-32524",
+    "listed_severity": "critical",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-32524",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-32524",
+      "vendor": [],
+      "upstream": [],
+      "additional": [
+        "https://patchstack.com/database/Wordpress/Plugin/wplr-sync/vulnerability/wordpress-photo-engine-plugin-6-4-9-arbitrary-file-upload-vulnerability?_s_id=cve",
+        "source-not-found-in-session"
+      ]
+    },
+    "published": "2026-03-25",
+    "cvss_score": "9.1",
+    "attack_vector": "NETWORK",
+    "description": "Unrestricted Upload of File with Dangerous Type vulnerability in Jordy Meow Photo Engine wplr-sync allows Upload a Web Shell to a Web Server.This issue affects Photo Engine: from n/a through <= 6.4.9.",
+    "product_name": "Photo Engine",
+    "product_family": "jordy-meow",
+    "vulnerable_version": "n/a",
+    "fixed_version": "6.5.0",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 5,
+    "line": "CVE-2026-32519  25/03/2026  CRITICAL (9.0)  Bit SMTP (<= 1.2.2) WordPress Plugin  Privilege Escalation",
+    "cve_id": "CVE-2026-32519",
+    "listed_severity": "critical",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-32519",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-32519",
+      "vendor": [],
+      "upstream": [],
+      "additional": [
+        "https://patchstack.com/database/Wordpress/Plugin/bit-smtp/vulnerability/wordpress-bit-smtp-plugin-1-2-2-broken-authentication-vulnerability?_s_id=cve",
+        "source-not-found-in-session"
+      ]
+    },
+    "published": "2026-03-25",
+    "cvss_score": "9.0",
+    "attack_vector": "NETWORK",
+    "description": "Incorrect Privilege Assignment vulnerability in Bit Apps Bit SMTP bit-smtp allows Privilege Escalation.This issue affects Bit SMTP: from n/a through <= 1.2.2.",
+    "product_name": "Bit SMTP",
+    "product_family": "bit-apps",
+    "vulnerable_version": "n/a",
+    "fixed_version": "1.2.3",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 6,
+    "line": "CVE-2026-32482  25/03/2026  CRITICAL (9.9)  Ona Theme (< 1.24)  WordPress Theme Arbitrary File Upload (RCE)",
+    "cve_id": "CVE-2026-32482",
+    "listed_severity": "critical",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-32482",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-32482",
+      "vendor": [],
+      "upstream": [],
+      "additional": [
+        "https://patchstack.com/database/Wordpress/Theme/ona/vulnerability/wordpress-ona-theme-1-24-arbitrary-file-upload-vulnerability?_s_id=cve",
+        "source-not-found-in-session"
+      ]
+    },
+    "published": "2026-03-25",
+    "cvss_score": "9.9",
+    "attack_vector": "NETWORK",
+    "description": "Unrestricted Upload of File with Dangerous Type vulnerability in deothemes Ona ona allows Upload a Web Shell to a Web Server.This issue affects Ona: from n/a through < 1.24.",
+    "product_name": "Ona",
+    "product_family": "deothemes",
+    "vulnerable_version": "n/a",
+    "fixed_version": "1.24",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 7,
+    "line": "CVE-2026-30976  25/03/2026  HIGH (8.6)  Sonarr (4.x < 4.0.17.2950)  PVR Application Path Traversal (Arbitrary File Read)",
+    "cve_id": "CVE-2026-30976",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-30976",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-30976",
+      "vendor": [
+        "https://github.com/Sonarr/Sonarr/security/advisories/GHSA-h393-v5hm-6h8f"
+      ],
+      "upstream": [
+        "https://github.com/Sonarr/Sonarr/releases/tag/v4.0.17.2950",
+        "https://github.com/Sonarr/Sonarr/releases/tag/v4.0.17.2952"
+      ],
+      "additional": []
+    },
+    "published": "2026-03-25",
+    "cvss_score": "8.6",
+    "attack_vector": "NETWORK",
+    "description": "Sonarr is a PVR for Usenet and BitTorrent users. In versions on the 4.x branch prior to 4.0.17.2950, an unauthenticated remote attacker can potentially read any file readable by the Sonarr process. These include application configuration files (containing API keys and database credentials), Windows system files, and any user-accessible files on the same drive This issue only impacts Windows systems; macOS and Linux are unaffected. Files returned from the API were not limited to the directory on disk they were intended to be served from. This problem has been patched in 4.0.17.2950 in the nightly/develop branch or 4.0.17.2952 for stable/main releases. It's possible to work around the issue by only hosting Sonarr on a secure internal network and accessing it via VPN, Tailscale or similar solution outside that network.",
+    "product_name": "Sonarr",
+    "product_family": "sonarr",
+    "vulnerable_version": ">= 4.0, < 4.0.17.2950",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 8,
+    "line": "CVE-2026-29871  27/03/2026  HIGH (7.5)  awesome-llm-apps Beifong AI FastAPI Backend Path Traversal",
+    "cve_id": "CVE-2026-29871",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-29871",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-29871",
+      "vendor": [
+        "https://github.com/lilmingwa13/security-research/blob/main/CVE-2026-29871.md"
+      ],
+      "upstream": [
+        "https://github.com/lilmingwa13/security-research/blob/main/CVE-2026-29871.md"
+      ],
+      "additional": []
+    },
+    "published": "2026-03-27",
+    "cvss_score": "7.5",
+    "attack_vector": "NETWORK",
+    "description": "A path traversal vulnerability exists in the awesome-llm-apps project in commit e46690f99c3f08be80a9877fab52acacf7ab8251 (2026-01-19) in the Beifong AI News and Podcast Agent backend in FastAPI backend, stream-audio endpoint, in file routers/podcast_router.py, in function stream_audio. The stream-audio endpoint accepts a user-controlled path parameter that is concatenated into a filesystem path without proper validation or restriction. An unauthenticated remote attacker can exploit this vulnerability to read arbitrary files from the server filesystem, potentially disclosing sensitive information such as configuration files and credentials.",
+    "product_name": "n/a",
+    "product_family": "n/a",
+    "vulnerable_version": "n/a",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 9,
+    "line": "CVE-2026-29000  2026-04-03  CRITICAL (9.1)  pac4j-jwt Application server  Authentication Bypass",
+    "cve_id": "CVE-2026-29000",
+    "listed_severity": "critical",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-29000",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-29000",
+      "vendor": [
+        "https://www.pac4j.org/blog/security-advisory-pac4j-jwt-jwtauthenticator.html",
+        "https://www.vulncheck.com/advisories/pac4j-jwt-jwtauthenticator-authentication-bypass"
+      ],
+      "upstream": [],
+      "additional": [
+        "https://www.codeant.ai/security-research/pac4j-jwt-authentication-bypass-public-key",
+        "https://www.pac4j.org/blog/security-advisory-pac4j-jwt-jwtauthenticator.html",
+        "https://www.vulncheck.com/advisories/pac4j-jwt-jwtauthenticator-authentication-bypass"
+      ]
+    },
+    "published": "2026-03-04",
+    "cvss_score": "9.1",
+    "attack_vector": "NETWORK",
+    "description": "pac4j-jwt versions prior to 4.5.9, 5.7.9, and 6.3.3 contain an authentication bypass vulnerability in JwtAuthenticator when processing encrypted JWTs that allows remote attackers to forge authentication tokens. Attackers who possess the server's RSA public key can create a JWE-wrapped PlainJWT with arbitrary subject and role claims, bypassing signature verification to authenticate as any user including administrators.",
+    "product_name": "pac4j-jwt",
+    "product_family": "pac4j",
+    "vulnerable_version": "4.0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 10,
+    "line": "CVE-2026-28367  27/03/2026  HIGH (8.7)  Undertow  Web Server  HTTP Request Smuggling",
+    "cve_id": "CVE-2026-28367",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-28367",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-28367",
+      "vendor": [
+        "https://access.redhat.com/security/cve/CVE-2026-28367",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2443260"
+      ],
+      "upstream": [],
+      "additional": [
+        "https://access.redhat.com/security/cve/CVE-2026-28367",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2443260"
+      ]
+    },
+    "published": "2026-03-27",
+    "cvss_score": "8.7",
+    "attack_vector": "NETWORK",
+    "description": "A flaw was found in Undertow. A remote attacker can exploit this vulnerability by sending `\\r\\r\\r` as a header block terminator. This can be used for request smuggling with certain proxy servers, such as older versions of Apache Traffic Server and Google Cloud Classic Application Load Balancer, potentially leading to unauthorized access or manipulation of web requests.",
+    "product_name": "Red Hat build of Apache Camel for Spring Boot 4",
+    "product_family": "red-hat",
+    "vulnerable_version": "unknown",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 11,
+    "line": "CVE-2026-27944  05/03/2026  CRITICAL (9.8)  Nginx UI  Web infrastructure  Missing Authentication",
+    "cve_id": "CVE-2026-27944",
+    "listed_severity": "critical",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-27944",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-27944",
+      "vendor": [
+        "https://github.com/0xJacky/nginx-ui/security/advisories/GHSA-g9w5-qffc-6762"
+      ],
+      "upstream": [],
+      "additional": []
+    },
+    "published": "2026-03-05",
+    "cvss_score": "9.8",
+    "attack_vector": "NETWORK",
+    "description": "Nginx UI is a web user interface for the Nginx web server. Prior to version 2.3.3, the /api/backup endpoint is accessible without authentication and discloses the encryption keys required to decrypt the backup in the X-Backup-Security response header. This allows an unauthenticated attacker to download a full system backup containing sensitive data (user credentials, session tokens, SSL private keys, Nginx configurations) and decrypt it immediately. This issue has been patched in version 2.3.3.",
+    "product_name": "nginx-ui",
+    "product_family": "0xjacky",
+    "vulnerable_version": "< 2.3.3",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 12,
+    "line": "CVE-2026-27880  27/03/2026  HIGH (7.5)  OpenFeature Feature Toggle Service  Denial of Service (OOM)",
+    "cve_id": "CVE-2026-27880",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-27880",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-27880",
+      "vendor": [
+        "https://grafana.com/security/security-advisories/cve-2026-27880"
+      ],
+      "upstream": [],
+      "additional": []
+    },
+    "published": "2026-03-27",
+    "cvss_score": "7.5",
+    "attack_vector": "NETWORK",
+    "description": "The OpenFeature feature toggle evaluation endpoint reads unbounded values into memory, which can cause out-of-memory crashes.",
+    "product_name": "Grafana",
+    "product_family": "grafana",
+    "vulnerable_version": "v12.1.0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "unknown",
+    "scope_reason": "insufficient evidence for network-facing exploit surface"
+  },
+  {
+    "order": 13,
+    "line": "CVE-2026-27855  27/03/2026  MEDIUM (6.8)  Dovecot Mail Server Replay Attack",
+    "cve_id": "CVE-2026-27855",
+    "listed_severity": "medium",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-27855",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-27855",
+      "vendor": [
+        "https://documentation.open-xchange.com/dovecot/security/advisories/csaf/2026/oxdc-adv-2026-0001.json"
+      ],
+      "upstream": [],
+      "additional": [
+        "https://documentation.open-xchange.com/dovecot/security/advisories/csaf/2026/oxdc-adv-2026-0001.json"
+      ]
+    },
+    "published": "2026-03-27",
+    "cvss_score": "6.8",
+    "attack_vector": "NETWORK",
+    "description": "Dovecot OTP authentication is vulnerable to replay attack under specific conditions. If auth cache is enabled, and username is altered in passdb, then OTP credentials can be cached so that same OTP reply is valid. An attacker able to observe an OTP exchange is able to log in as the user. If authentication happens over unsecure connection, switch to SCRAM protocol. Alternatively ensure the communcations are secured, and if possible switch to OAUTH2 or SCRAM. No publicly available exploits are known.",
+    "product_name": "OX Dovecot Pro",
+    "product_family": "open-xchange-gmbh",
+    "vulnerable_version": "0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 14,
+    "line": "CVE-2026-27734  27/02/2026  HIGH (7.5)  Beszel  Application server  Path Traversal",
+    "cve_id": "CVE-2026-27734",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-27734",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-27734",
+      "vendor": [
+        "https://github.com/henrygd/beszel/security/advisories/GHSA-phwh-4f42-gwf3"
+      ],
+      "upstream": [
+        "https://github.com/henrygd/beszel/releases/tag/v0.18.4"
+      ],
+      "additional": []
+    },
+    "published": "2026-02-27",
+    "cvss_score": "6.5",
+    "attack_vector": "NETWORK",
+    "description": "Beszel is a server monitoring platform. Prior to version 0.18.2, the hub's authenticated API endpoints GET /api/beszel/containers/logs and GET /api/beszel/containers/info pass the user-supplied \"container\" query parameter to the agent without validation. The agent constructs Docker Engine API URLs using fmt.Sprintf with the raw value instead of url.PathEscape(). Since Go's http.Client does not sanitize `../` sequences from URL paths sent over unix sockets, an authenticated user (including readonly role) can traverse to arbitrary Docker API endpoints on agent hosts, exposing sensitive infrastructure details. Version 0.18.4 fixes the issue.",
+    "product_name": "beszel",
+    "product_family": "henrygd",
+    "vulnerable_version": "< 0.18.4",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 15,
+    "line": "CVE-2026-26352  30/03/2026  MEDIUM (5.4)  Smoothwall Express  Network service Stored XSS",
+    "cve_id": "CVE-2026-26352",
+    "listed_severity": "medium",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-26352",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-26352",
+      "vendor": [
+        "https://community.smoothwall.org/forum/viewtopic.php?t=45095",
+        "https://www.vulncheck.com/advisories/smoothwall-express-stored-xss-in-vpnmain-cgi-via-vpn-ip-parameter"
+      ],
+      "upstream": [],
+      "additional": [
+        "https://community.smoothwall.org/forum/viewtopic.php?t=45095",
+        "https://www.vulncheck.com/advisories/smoothwall-express-stored-xss-in-vpnmain-cgi-via-vpn-ip-parameter"
+      ]
+    },
+    "published": "2026-03-30",
+    "cvss_score": "5.4",
+    "attack_vector": "NETWORK",
+    "description": "Smoothwall Express versions prior to 3.1 Update 13 contain a stored cross-site scripting vulnerability in the /cgi-bin/vpnmain.cgi script due to improper sanitation of the VPN_IP parameter. Authenticated attackers can inject arbitrary JavaScript through VPN configuration settings that executes when the affected page is viewed by other users.",
+    "product_name": "Express",
+    "product_family": "smoothwall",
+    "vulnerable_version": "0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 16,
+    "line": "CVE-2026-26073  26/03/2026  MEDIUM (5.9)  EVerest EV Charging (< 2026.02.0) EV Charging Software  Data Race (Memory Corruption)",
+    "cve_id": "CVE-2026-26073",
+    "listed_severity": "medium",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-26073",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-26073",
+      "vendor": [
+        "https://github.com/EVerest/EVerest/security/advisories/GHSA-jf36-f4f9-7qc2"
+      ],
+      "upstream": [],
+      "additional": []
+    },
+    "published": "2026-03-26",
+    "cvss_score": "5.9",
+    "attack_vector": "NETWORK",
+    "description": "EVerest is an EV charging software stack. Versions prior to 2026.02.0 have a data race leading to possible `std::queue`/`std::deque` corruption. The trigger is powermeter public key update and EV session/error events (while OCPP not started). This results in a TSAN data race report and an ASAN/UBSAN misaligned address runtime error being observed. Version 2026.02.0 contains a patch.",
+    "product_name": "everest-core",
+    "product_family": "everest",
+    "vulnerable_version": "< 2026.02.0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "unknown",
+    "scope_reason": "insufficient evidence for network-facing exploit surface"
+  },
+  {
+    "order": 17,
+    "line": "CVE-2026-25887  2026-06-03  HIGH (7.2)  Chartbrew Application server  RCE",
+    "cve_id": "CVE-2026-25887",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-25887",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-25887",
+      "vendor": [
+        "https://github.com/chartbrew/chartbrew/security/advisories/GHSA-x4r6-prmw-7wvw"
+      ],
+      "upstream": [
+        "https://github.com/chartbrew/chartbrew/releases/tag/v4.8.1"
+      ],
+      "additional": []
+    },
+    "published": "2026-03-06",
+    "cvss_score": "7.2",
+    "attack_vector": "NETWORK",
+    "description": "Chartbrew is an open-source web application that can connect directly to databases and APIs and use the data to create charts. Prior to version 4.8.1, there is a remote code execution vulnerability via the MongoDB dataset Query. This issue has been patched in version 4.8.1.",
+    "product_name": "chartbrew",
+    "product_family": "chartbrew",
+    "vulnerable_version": "< 4.8.1",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 18,
+    "line": "CVE-2026-25361  25/03/2026  HIGH (7.1)  WpEvently (<= 5.1.4)  WordPress Plugin  Reflected XSS",
+    "cve_id": "CVE-2026-25361",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-25361",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-25361",
+      "vendor": [],
+      "upstream": [],
+      "additional": [
+        "https://patchstack.com/database/Wordpress/Plugin/mage-eventpress/vulnerability/wordpress-wpevently-plugin-5-1-4-reflected-cross-site-scripting-xss-vulnerability?_s_id=cve",
+        "source-not-found-in-session"
+      ]
+    },
+    "published": "2026-03-25",
+    "cvss_score": "7.1",
+    "attack_vector": "NETWORK",
+    "description": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in magepeopleteam WpEvently mage-eventpress allows Reflected XSS.This issue affects WpEvently: from n/a through <= 5.1.4.",
+    "product_name": "WpEvently",
+    "product_family": "magepeopleteam",
+    "vulnerable_version": "n/a",
+    "fixed_version": "5.1.5",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 19,
+    "line": "CVE-2026-25116  29/01/2026  HIGH (8.8)  Runtipi Application server  Path Traversal",
+    "cve_id": "CVE-2026-25116",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-25116",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-25116",
+      "vendor": [
+        "https://github.com/runtipi/runtipi/security/advisories/GHSA-mwg8-x997-cqw6"
+      ],
+      "upstream": [
+        "https://github.com/runtipi/runtipi/releases/tag/v4.7.2"
+      ],
+      "additional": []
+    },
+    "published": "2026-01-29",
+    "cvss_score": "7.6",
+    "attack_vector": "NETWORK",
+    "description": "Runtipi is a personal homeserver orchestrator. Starting in version 4.5.0 and prior to version 4.7.2, an unauthenticated Path Traversal vulnerability in the `UserConfigController` allows any remote user to overwrite the system's `docker-compose.yml` configuration file. By exploiting insecure URN parsing, an attacker can replace the primary stack configuration with a malicious one, resulting in full Remote Code Execution (RCE) and host filesystem compromise the next time the instance is restarted by the operator. Version 4.7.2 fixes the vulnerability.",
+    "product_name": "runtipi",
+    "product_family": "runtipi",
+    "vulnerable_version": ">= 4.5.0, < 4.7.2",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 20,
+    "line": "CVE-2026-24512  03/02/2026  HIGH (8.8)  ingress-nginx Web infrastructure  Configuration Injection",
+    "cve_id": "CVE-2026-24512",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-24512",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-24512",
+      "vendor": [],
+      "upstream": [
+        "https://github.com/kubernetes/kubernetes/issues/136678"
+      ],
+      "additional": [
+        "https://github.com/kubernetes/kubernetes/issues/136678"
+      ]
+    },
+    "published": "2026-02-03",
+    "cvss_score": "8.8",
+    "attack_vector": "NETWORK",
+    "description": "A security issue was discovered in ingress-nginx where the `rules.http.paths.path` Ingress field can be used to inject configuration into nginx. This can lead to arbitrary code execution in the context of the ingress-nginx controller, and disclosure of Secrets accessible to the controller. (Note that in the default installation, the controller can access all Secrets cluster-wide.)",
+    "product_name": "ingress-nginx",
+    "product_family": "kubernetes",
+    "vulnerable_version": "0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 21,
+    "line": "CVE-2026-24061  21/01/2026  CRITICAL (9.8)  GNU InetUtils telnetd Network service Argument Injection",
+    "cve_id": "CVE-2026-24061",
+    "listed_severity": "critical",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-24061",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-24061",
+      "vendor": [
+        "https://lists.gnu.org/archive/html/bug-inetutils/2026-01/msg00004.html",
+        "https://www.vicarius.io/vsociety/posts/cve-2026-24061-mitigation-script-remote-authentication-bypass-in-gnu-inetutils-package"
+      ],
+      "upstream": [
+        "https://codeberg.org/inetutils/inetutils/commit/fd702c02497b2f398e739e3119bed0b23dd7aa7b",
+        "https://codeberg.org/inetutils/inetutils/commit/ccba9f748aa8d50a38d7748e2e60362edd6a32cc"
+      ],
+      "additional": [
+        "https://www.openwall.com/lists/oss-security/2026/01/20/2",
+        "https://www.openwall.com/lists/oss-security/2026/01/20/8",
+        "https://www.gnu.org/software/inetutils/",
+        "https://lists.gnu.org/archive/html/bug-inetutils/2026-01/msg00004.html",
+        "https://www.vicarius.io/vsociety/posts/cve-2026-24061-detection-script-remote-authentication-bypass-in-gnu-inetutils-package",
+        "https://www.vicarius.io/vsociety/posts/cve-2026-24061-mitigation-script-remote-authentication-bypass-in-gnu-inetutils-package",
+        "http://www.openwall.com/lists/oss-security/2026/01/22/1",
+        "https://lists.debian.org/debian-lts-announce/2026/01/msg00025.html",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-24061",
+        "https://www.labs.greynoise.io/grimoire/2026-01-22-f-around-and-find-out-18-hours-of-unsolicited-houseguests/index.html",
+        "https://www.openwall.com/lists/oss-security/2026/01/20/2#:~:text=root@...a%3A~%20USER='"
+      ]
+    },
+    "published": "2026-01-21",
+    "cvss_score": "9.8",
+    "attack_vector": "NETWORK",
+    "description": "telnetd in GNU Inetutils through 2.7 allows remote authentication bypass via a \"-f root\" value for the USER environment variable.",
+    "product_name": "Inetutils",
+    "product_family": "gnu",
+    "vulnerable_version": "1.9.3",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 22,
+    "line": "CVE-2026-23837  19/01/2026  CRITICAL (9.8)  MyTube  Web application Authentication Bypass",
+    "cve_id": "CVE-2026-23837",
+    "listed_severity": "critical",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-23837",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-23837",
+      "vendor": [
+        "https://github.com/franklioxygen/MyTube/security/advisories/GHSA-cmvj-g69f-8664"
+      ],
+      "upstream": [
+        "https://github.com/franklioxygen/MyTube/commit/f85ae9b0d6e4a6480c6af5b675a99069d08d496e"
+      ],
+      "additional": [
+        "https://github.com/franklioxygen/MyTube/security/advisories/GHSA-cmvj-g69f-8664"
+      ]
+    },
+    "published": "2026-01-19",
+    "cvss_score": "9.8",
+    "attack_vector": "NETWORK",
+    "description": "MyTube is a self-hosted downloader and player for several video websites. A vulnerability present in version 1.7.65 and poetntially earlier versions allows unauthenticated users to bypass the mandatory authentication check in the roleBasedAuthMiddleware. By simply not providing an authentication cookie (making req.user undefined), a request is incorrectly passed through to downstream handlers. All users running MyTube with loginEnabled: true are impacted. This flaw allows an attacker to access and modify application settings via /api/settings, change administrative and visitor passwords, and access other protected routes that rely on this specific middleware. The problem is patched in v1.7.66. MyTube maintainers recommend all users upgrade to at least version v1.7.64 immediately to secure their instances. The fix ensures that the middleware explicitly blocks requests if a user is not authenticated, rather than defaulting to next(). Those who cannot upgrade immediately can mitigate risk by restricting network access by usi a firewall or reverse proxy (like Nginx) to restrict access to the /api/ endpoints to trusted IP addresses only or, if they are comfortable editing the source code, manually patch by locating roleBasedAuthMiddleware and ensuring that the logic defaults to an error (401 Unauthorized) when req.user is undefined, instead of calling next().",
+    "product_name": "MyTube",
+    "product_family": "franklioxygen",
+    "vulnerable_version": "< 1.7.66",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 23,
+    "line": "CVE-2026-22804  2026-12-01  HIGH (8.0)  Termix  Web application Cross-Site Scripting",
+    "cve_id": "CVE-2026-22804",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-22804",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-22804",
+      "vendor": [
+        "https://github.com/Termix-SSH/Termix/security/advisories/GHSA-m3cv-5hgp-hv35"
+      ],
+      "upstream": [],
+      "additional": [
+        "https://github.com/Termix-SSH/Termix/security/advisories/GHSA-m3cv-5hgp-hv35"
+      ]
+    },
+    "published": "2026-01-12",
+    "cvss_score": "8.0",
+    "attack_vector": "NETWORK",
+    "description": "Termix is a web-based server management platform with SSH terminal, tunneling, and file editing capabilities. From 1.7.0 to 1.9.0, Stored Cross-Site Scripting (XSS) vulnerability exists in the Termix File Manager component. The application fails to sanitize SVG file content before rendering it. This allows an attacker who has compromised a managed SSH server to plant a malicious file, which, when previewed by the Termix user, executes arbitrary JavaScript in the context of the application. The vulnerability is located in src/ui/desktop/apps/file-manager/components/FileViewer.tsx. This vulnerability is fixed in 1.10.0.",
+    "product_name": "Termix",
+    "product_family": "termix-ssh",
+    "vulnerable_version": ">= 1.7.0, < 1.10.0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 24,
+    "line": "CVE-2026-22265  15/01/2026  HIGH (7.5)  Roxy-WI Web application OS Command Injection",
+    "cve_id": "CVE-2026-22265",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-22265",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-22265",
+      "vendor": [
+        "https://github.com/roxy-wi/roxy-wi/security/advisories/GHSA-mmmf-vh7m-rm47"
+      ],
+      "upstream": [
+        "https://github.com/roxy-wi/roxy-wi/commit/f040d3338c4ba6f66127487361592e32e0188eee",
+        "https://github.com/roxy-wi/roxy-wi/releases/tag/v8.2.8.2"
+      ],
+      "additional": []
+    },
+    "published": "2026-01-15",
+    "cvss_score": "7.5",
+    "attack_vector": "NETWORK",
+    "description": "Roxy-WI is a web interface for managing Haproxy, Nginx, Apache and Keepalived servers. Prior to 8.2.8.2, command injection vulnerability exists in the log viewing functionality that allows authenticated users to execute arbitrary system commands. The vulnerability is in app/modules/roxywi/logs.py line 87, where the grep parameter is used twice - once sanitized and once raw. This vulnerability is fixed in 8.2.8.2.",
+    "product_name": "roxy-wi",
+    "product_family": "roxy-wi",
+    "vulnerable_version": "< 8.2.8.2",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 25,
+    "line": "CVE-2026-21858  2026-07-01  CRITICAL (10.0) n8n Application server  RCE",
+    "cve_id": "CVE-2026-21858",
+    "listed_severity": "critical",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-21858",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-21858",
+      "vendor": [
+        "https://github.com/n8n-io/n8n/security/advisories/GHSA-v4pr-fm98-w9pg"
+      ],
+      "upstream": [],
+      "additional": [
+        "https://www.cyera.com/research-labs/ni8mare-unauthenticated-remote-code-execution-in-n8n-cve-2026-21858"
+      ]
+    },
+    "published": "2026-01-07",
+    "cvss_score": "10.0",
+    "attack_vector": "NETWORK",
+    "description": "n8n is an open source workflow automation platform. Versions starting with 1.65.0 and below 1.121.0 enable an attacker to access files on the underlying server through execution of certain form-based workflows. A vulnerable workflow could grant access to an unauthenticated remote attacker, resulting in exposure of sensitive information stored on the system and may enable further compromise depending on deployment configuration and workflow usage. This issue is fixed in version 1.121.0.",
+    "product_name": "n8n",
+    "product_family": "n8n-io",
+    "vulnerable_version": ">= 1.65.0, < 1.121.0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 26,
+    "line": "CVE-2026-4948 26/03/2026  MEDIUM (5.5)  firewalld Firewall Daemon Privilege Escalation / Unauthorized Modification",
+    "cve_id": "CVE-2026-4948",
+    "listed_severity": "medium",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-4948",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-4948",
+      "vendor": [],
+      "upstream": [],
+      "additional": [
+        "https://access.redhat.com/security/cve/CVE-2026-4948",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2452086",
+        "source-not-found-in-session"
+      ]
+    },
+    "published": "2026-03-27",
+    "cvss_score": "5.5",
+    "attack_vector": "LOCAL",
+    "description": "A flaw was found in firewalld. A local unprivileged user can exploit this vulnerability by mis-authorizing two runtime D-Bus (Desktop Bus) setters, setZoneSettings2 and setPolicySettings. This mis-authorization allows the user to modify the runtime firewall state without proper authentication, leading to unauthorized changes in network security configurations.",
+    "product_name": "Red Hat Enterprise Linux 10",
+    "product_family": "red-hat",
+    "vulnerable_version": "unknown",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "out-of-scope",
+    "scope_reason": "attack vector LOCAL"
+  },
+  {
+    "order": 27,
+    "line": "CVE-2026-4907 26/03/2026  MEDIUM (6.3)  Page-Replica Page Replica Web Application Server-Side Request Forgery (SSRF)",
+    "cve_id": "CVE-2026-4907",
+    "listed_severity": "medium",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-4907",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-4907",
+      "vendor": [
+        "https://vuldb.com/?submit.777447"
+      ],
+      "upstream": [
+        "https://github.com/lakshayyverma/CVE-Discovery/blob/main/page_replica.md"
+      ],
+      "additional": [
+        "https://vuldb.com/?id.353658",
+        "https://vuldb.com/?ctiid.353658",
+        "https://github.com/lakshayyverma/CVE-Discovery/blob/main/page_replica.md",
+        "https://vuldb.com/?submit.777447"
+      ]
+    },
+    "published": "2026-03-27",
+    "cvss_score": "6.3",
+    "attack_vector": "NETWORK",
+    "description": "A vulnerability was identified in Page-Replica Page Replica up to e4a7f52e75093ee318b4d5a9a9db6751050d2ad0. The impacted element is the function sitemap.fetch of the file /sitemap of the component Endpoint. The manipulation of the argument url leads to server-side request forgery. The attack is possible to be carried out remotely. The exploit is publicly available and might be used. This product adopts a rolling release strategy to maintain continuous delivery. Therefore, version details for affected or updated releases cannot be specified. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "product_name": "Page Replica",
+    "product_family": "page-replica",
+    "vulnerable_version": "e4a7f52e75093ee318b4d5a9a9db6751050d2ad0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 28,
+    "line": "CVE-2026-4897 26/03/2026  MEDIUM (5.5)  polkit (polkit-agent-helper-1)  System Utility  Out-of-memory (DoS)",
+    "cve_id": "CVE-2026-4897",
+    "listed_severity": "medium",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-4897",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-4897",
+      "vendor": [],
+      "upstream": [],
+      "additional": [
+        "https://access.redhat.com/security/cve/CVE-2026-4897",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2451739",
+        "source-not-found-in-session"
+      ]
+    },
+    "published": "2026-03-26",
+    "cvss_score": "5.5",
+    "attack_vector": "LOCAL",
+    "description": "A flaw was found in polkit. A local user can exploit this by providing a specially crafted, excessively long input to the `polkit-agent-helper-1` setuid binary via standard input (stdin). This unbounded input can lead to an out-of-memory (OOM) condition, resulting in a Denial of Service (DoS) for the system.",
+    "product_name": "Red Hat Enterprise Linux 10",
+    "product_family": "red-hat",
+    "vulnerable_version": "unknown",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "out-of-scope",
+    "scope_reason": "attack vector LOCAL"
+  },
+  {
+    "order": 29,
+    "line": "CVE-2026-1642 04/02/2026  HIGH (8.2)  NGINX OSS/Plus  Web infrastructure  Data Injection",
+    "cve_id": "CVE-2026-1642",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-1642",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-1642",
+      "vendor": [
+        "https://my.f5.com/manage/s/article/K000159824"
+      ],
+      "upstream": [],
+      "additional": [
+        "http://www.openwall.com/lists/oss-security/2026/02/05/1"
+      ]
+    },
+    "published": "2026-02-04",
+    "cvss_score": "5.9",
+    "attack_vector": "NETWORK",
+    "description": "A vulnerability exists in NGINX OSS and NGINX Plus when configured to proxy to upstream Transport Layer Security (TLS) servers. An attacker with a man-in-the-middle (MITM) position on the upstream server side\u2014along with conditions beyond the attacker's control\u2014may be able to inject plain text data into the response from an upstream proxied server.\u00a0\u00a0Note: Software versions which have reached End of Technical Support (EoTS) are not evaluated.",
+    "product_name": "NGINX Open Source",
+    "product_family": "f5",
+    "vulnerable_version": "1.3.0",
+    "fixed_version": "1.28.2",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 30,
+    "line": "CVE-2026-1580 03/02/2026  HIGH (8.8)  ingress-nginx Web infrastructure  Configuration Injection",
+    "cve_id": "CVE-2026-1580",
+    "listed_severity": "high",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-1580",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-1580",
+      "vendor": [],
+      "upstream": [
+        "https://github.com/kubernetes/kubernetes/issues/136677"
+      ],
+      "additional": [
+        "https://github.com/kubernetes/kubernetes/issues/136677"
+      ]
+    },
+    "published": "2026-02-03",
+    "cvss_score": "8.8",
+    "attack_vector": "NETWORK",
+    "description": "A security issue was discovered in ingress-nginx\u00a0where the `nginx.ingress.kubernetes.io/auth-method` Ingress annotation can be used to inject configuration into nginx. This can lead to arbitrary code execution in the context of the ingress-nginx controller, and disclosure of Secrets accessible to the controller. (Note that in the default installation, the controller can access all Secrets cluster-wide.)",
+    "product_name": "ingress-nginx",
+    "product_family": "kubernetes",
+    "vulnerable_version": "0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 31,
+    "line": "CVE-2026-1561 25/03/2026  MEDIUM (5.4)  IBM WebSphere Liberty (17.0.0.3 - 26.0.0.3) Application Server  Server-Side Request Forgery (SSRF)",
+    "cve_id": "CVE-2026-1561",
+    "listed_severity": "medium",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-1561",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-1561",
+      "vendor": [
+        "https://www.ibm.com/support/pages/node/7267347"
+      ],
+      "upstream": [],
+      "additional": []
+    },
+    "published": "2026-03-25",
+    "cvss_score": "5.4",
+    "attack_vector": "NETWORK",
+    "description": "IBM WebSphere Application Server - Liberty 17.0.0.3 through 26.0.0.3 IBM WebSphere Application Server Liberty is vulnerable to server-side request forgery (SSRF). This may allow remote attacker to send unauthorized requests from the system, potentially leading to network enumeration or facilitating other attacks.",
+    "product_name": "WebSphere Application Server Liberty",
+    "product_family": "ibm",
+    "vulnerable_version": "17.0.0.3",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  },
+  {
+    "order": 32,
+    "line": "CVE-2026-1324 22/01/2026  CRITICAL (9.8)  Sangfor Operation and Maintenance Management System Web application OS Command Injection",
+    "cve_id": "CVE-2026-1324",
+    "listed_severity": "critical",
+    "sources": {
+      "cve": "https://www.cve.org/CVERecord?id=CVE-2026-1324",
+      "nvd": "https://nvd.nist.gov/vuln/detail/CVE-2026-1324",
+      "vendor": [
+        "https://vuldb.com/?submit.735716"
+      ],
+      "upstream": [
+        "https://github.com/LX-LX88/cve/issues/20"
+      ],
+      "additional": [
+        "https://vuldb.com/?id.342300",
+        "https://vuldb.com/?ctiid.342300",
+        "https://github.com/LX-LX88/cve/issues/20",
+        "https://vuldb.com/?submit.735716"
+      ]
+    },
+    "published": "2026-01-22",
+    "cvss_score": "8.8",
+    "attack_vector": "NETWORK",
+    "description": "A vulnerability was identified in Sangfor Operation and Maintenance Management System up to 3.0.12. Affected by this issue is the function SessionController of the file /isomp-protocol/protocol/session of the component SSH Protocol Handler. The manipulation of the argument keypassword leads to os command injection. It is possible to initiate the attack remotely. The exploit is publicly available and might be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "product_name": "Operation and Maintenance Management System",
+    "product_family": "sangfor",
+    "vulnerable_version": "3.0.0",
+    "fixed_version": "unknown",
+    "nvd_fetch": "ok",
+    "cve_fetch": "ok",
+    "scope": "network",
+    "scope_reason": "network-facing product and exploit path"
+  }
+]

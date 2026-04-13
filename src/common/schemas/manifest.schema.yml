@@ -1,0 +1,110 @@
+type: object
+required:
+  - cve_id
+  - severity
+  - product
+  - sources
+  - fidelity
+  - runtime
+  - exploit
+  - status
+properties:
+  cve_id:
+    type: string
+    pattern: "^CVE-[0-9]{4}-[0-9]{4,}$"
+  severity:
+    type: string
+    enum: [critical, high, medium]
+  product:
+    type: object
+    required: [name, family, vulnerable_version]
+    properties:
+      name:
+        type: string
+      family:
+        type: string
+      component:
+        type: string
+      vulnerable_version:
+        type: string
+      fixed_version:
+        type: string
+      fixed_version_unavailable_reason:
+        type: string
+  sources:
+    type: object
+    required: [cve, nvd, vendor, upstream]
+    properties:
+      cve:
+        type: string
+      nvd:
+        type: string
+      vendor:
+        type: array
+        items:
+          type: string
+      upstream:
+        type: array
+        items:
+          type: string
+      additional:
+        type: array
+        items:
+          type: string
+  fidelity:
+    type: object
+    required: [level, rationale, limitations]
+    properties:
+      level:
+        type: string
+        enum: [synthetic, partial, faithful, production-faithful]
+      rationale:
+        type: string
+      limitations:
+        type: array
+        items:
+          type: string
+  runtime:
+    type: object
+    required: [host_bind, ports, required_services]
+    properties:
+      host_bind:
+        type: string
+      ports:
+        type: object
+      required_services:
+        type: array
+        items:
+          type: string
+      optional_services:
+        type: array
+        items:
+          type: string
+  exploit:
+    type: object
+    required:
+      - attack_type
+      - trigger
+      - auto_exploit_on_startup
+      - success_condition
+      - negative_control_expectation
+    properties:
+      attack_type:
+        type: string
+      trigger:
+        type: string
+      auto_exploit_on_startup:
+        type: boolean
+      success_condition:
+        type: string
+      negative_control_expectation:
+        type: string
+  status:
+    type: object
+    required: [completeness, blocker]
+    properties:
+      completeness:
+        type: string
+        enum: [complete, incomplete, vuln-only]
+      blocker:
+        type: string

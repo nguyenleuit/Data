@@ -1,0 +1,27 @@
+CVE-2026-32748  25/03/2026  HIGH (7.5)  Squid Web Proxy (< 7.5) Web Proxy Denial of Service (Use-After-Free)
+CVE-2026-32746  13/03/2026  CRITICAL (9.8)  GNU InetUtils telnetd Network service Buffer Overflow
+CVE-2026-32538  25/03/2026  HIGH (7.5)  SMTP Mailer (<= 1.1.24) WordPress Plugin  Sensitive Data Exposure
+CVE-2026-32524  25/03/2026  CRITICAL (9.1)  Photo Engine wplr-sync (<= 6.4.9) WordPress Plugin  Arbitrary File Upload (Web Shell)
+CVE-2026-32519  25/03/2026  CRITICAL (9.0)  Bit SMTP (<= 1.2.2) WordPress Plugin  Privilege Escalation
+CVE-2026-32482  25/03/2026  CRITICAL (9.9)  Ona Theme (< 1.24)  WordPress Theme Arbitrary File Upload (RCE)
+CVE-2026-29000  2026-04-03  CRITICAL (9.1)  pac4j-jwt Application server  Authentication Bypass
+CVE-2026-27944  05/03/2026  CRITICAL (9.8)  Nginx UI  Web infrastructure  Missing Authentication
+CVE-2026-27880  27/03/2026  HIGH (7.5)  OpenFeature Feature Toggle Service  Denial of Service (OOM)
+CVE-2026-27855  27/03/2026  MEDIUM (6.8)  Dovecot Mail Server Replay Attack
+CVE-2026-27734  27/02/2026  HIGH (7.5)  Beszel  Application server  Path Traversal
+CVE-2026-26352  30/03/2026  MEDIUM (5.4)  Smoothwall Express  Network service Stored XSS
+CVE-2026-26073  26/03/2026  MEDIUM (5.9)  EVerest EV Charging (< 2026.02.0) EV Charging Software  Data Race (Memory Corruption)
+CVE-2026-25887  2026-06-03  HIGH (7.2)  Chartbrew Application server  RCE
+CVE-2026-25361  25/03/2026  HIGH (7.1)  WpEvently (<= 5.1.4)  WordPress Plugin  Reflected XSS
+CVE-2026-25116  29/01/2026  HIGH (8.8)  Runtipi Application server  Path Traversal
+CVE-2026-24512  03/02/2026  HIGH (8.8)  ingress-nginx Web infrastructure  Configuration Injection
+CVE-2026-24061  21/01/2026  CRITICAL (9.8)  GNU InetUtils telnetd Network service Argument Injection
+CVE-2026-23837  19/01/2026  CRITICAL (9.8)  MyTube  Web application Authentication Bypass
+CVE-2026-22804  2026-12-01  HIGH (8.0)  Termix  Web application Cross-Site Scripting
+CVE-2026-22265  15/01/2026  HIGH (7.5)  Roxy-WI Web application OS Command Injection
+CVE-2026-21858  2026-07-01  CRITICAL (10.0) n8n Application server  RCE
+CVE-2026-4907 26/03/2026  MEDIUM (6.3)  Page-Replica Page Replica Web Application Server-Side Request Forgery (SSRF)
+CVE-2026-1642 04/02/2026  HIGH (8.2)  NGINX OSS/Plus  Web infrastructure  Data Injection
+CVE-2026-1580 03/02/2026  HIGH (8.8)  ingress-nginx Web infrastructure  Configuration Injection
+CVE-2026-1561 25/03/2026  MEDIUM (5.4)  IBM WebSphere Liberty (17.0.0.3 - 26.0.0.3) Application Server  Server-Side Request Forgery (SSRF)
+CVE-2026-1324 22/01/2026  CRITICAL (9.8)  Sangfor Operation and Maintenance Management System Web application OS Command Injection

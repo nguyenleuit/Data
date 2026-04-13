@@ -1,0 +1,8 @@
+defaults:
+  host_bind: "127.0.0.1"
+  target:
+    host: 9090
+    container: 9090
+  verifier:
+    host: 9091
+    container: 9091
