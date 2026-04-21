@@ -118,15 +118,18 @@ def main() -> int:
     args = parser.parse_args()
     root = Path(args.root)
 
-    lines = (root / "CVE_list.txt").read_text().splitlines()
+    docs_root = root / "docs" if (root / "docs").exists() else root
+    src_root = root / "src" if (root / "src").exists() else root / "src"
+
+    lines = (docs_root / "CVE_list.txt").read_text().splitlines()
     cve_ids = extract_cves(lines)
 
-    meta_entries = json.loads((root / "cve_meta.json").read_text())
+    meta_entries = json.loads((docs_root / "cve_meta.json").read_text())
     meta = {e["cve_id"]: e for e in meta_entries}
-    manifests = load_manifests(root / "src")
+    manifests = load_manifests(src_root)
 
     report = build_report(cve_ids, meta, manifests)
-    out = root / "docs" / "Report.md"
+    out = docs_root / "Report.md"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(report + "\n")
     print(f"Rendered {out}")

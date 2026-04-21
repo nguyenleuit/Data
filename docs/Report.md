@@ -23,7 +23,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 7.4
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -32,13 +32,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: target starts healthy with TCP 3128 reachable, then attacker-sent ICP v3 query packets to UDP 3130 cause vulnerable service availability loss
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: target starts reachable on TCP 3128, then crafted ICP v3 query traffic to UDP 3130 makes the vulnerable service unreachable on TCP 3128
+- Negative-control expectation: none; this vuln-only lab has no fixed or verifier service, so no side-by-side comparison is performed
 
 ### Fidelity
 - Level: faithful
-- Rationale: both vulnerable and fixed services build from real upstream Squid tags and the exploit sends real ICP v3 network traffic to validate denial-of-service behavior parity
-- Limitations: this lab validates service-availability impact from crafted ICP v3 traffic and does not model production cache workloads
+- Rationale: the lab builds vulnerable Squid 7.4 and exercises the ICP v3 availability impact directly against that target
+- Limitations: this is a vuln-only lab with no fixed-side comparison or verifier service; the lab validates service-availability impact from crafted ICP v3 traffic and does not model production cache workloads
 
 ### Validation
 - Completeness: vuln-only
@@ -46,7 +46,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-32746
@@ -70,7 +70,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: v2.7
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -79,13 +79,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: after external telnet negotiation with oversized LINEMODE SLC triplets, vulnerable target is classified vulnerable by the SLC response parity check used in public detection tooling
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: the solution connects to the vulnerable telnetd service, sends oversized LINEMODE SLC triplets, and observes an SLC response that the parity-check heuristic classifies as vulnerable
+- Negative-control expectation: comparison not performed; this vuln-only lab contains only the vulnerable target
 
 ### Fidelity
 - Level: faithful
-- Rationale: vulnerable and fixed services compile and run real upstream inetutils telnetd revisions and are exercised with crafted LINEMODE SLC negotiation traffic matching public reproduction guidance
-- Limitations: lab validates negotiation-stage memory corruption exposure behavior and does not provide a weaponized RCE payload
+- Rationale: source-built GNU Inetutils telnetd v2.7 is exercised over the network with the real LINEMODE SLC negotiation path; success is still limited to protocol-level vulnerable classification rather than a weaponized post-overflow payload
+- Limitations: lab validates negotiation-stage exposure behavior through the observed SLC response classification and does not provide a weaponized post-overflow payload
 
 ### Validation
 - Completeness: vuln-only
@@ -93,7 +93,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-32538
@@ -117,7 +117,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 1.1.23 (representative for <= 1.1.24 affected range)
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -126,13 +126,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: unauthenticated external POST to wp-login.php?action=lostpassword with smtp_mailer_send_test_email=1 causes vulnerable target response to include SMTP debug transcript that leaks authentication material (base64 user or password)
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: unauthenticated external POST to wp-login.php?action=lostpassword with smtp_mailer_send_test_email=1 causes the vulnerable target response to include the SMTP AUTH debug transcript for the configured credentials
+- Negative-control expectation: comparison not performed; this vuln-only lab contains only the vulnerable target plus supporting target-db and auxiliary SMTP mock services
 
 ### Fidelity
-- Level: faithful
-- Rationale: lab runs real WordPress with real SMTP Mailer plugin builds and demonstrates attacker-controlled debug-output leakage during externally triggered password-reset mail flow on vulnerable version versus fixed behavior on patched version
-- Limitations: affected range includes <= 1.1.24 but upstream artifact for 1.1.24 was not available in session; vulnerable control uses 1.1.23 from official plugin download archive
+- Level: partial
+- Rationale: lab runs real WordPress with the real vulnerable SMTP Mailer plugin and demonstrates attacker-triggered SMTP debug-output leakage through the lost-password flow
+- Limitations: affected range includes <= 1.1.24 but upstream artifact for 1.1.24 was not available in session; vulnerable control uses 1.1.23 from official plugin download archive; the downstream SMTP peer is an internal mock service that exists only to make the debug transcript deterministic
 
 ### Validation
 - Completeness: vuln-only
@@ -140,7 +140,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-32524
@@ -164,7 +164,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 6.4.9
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -173,13 +173,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: authenticated external POST multipart upload to /?wplr-sync-api with action=sync uploads a PHP file on vulnerable target and the uploaded file executes with attacker-controlled marker when requested over HTTP
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: authenticated external POST multipart upload to /?wplr-sync-api with action=sync stores a PHP payload on the vulnerable target and the uploaded file executes with an attacker-controlled marker when fetched over HTTP
+- Negative-control expectation: none; this vuln-only lab contains no fixed-side comparison
 
 ### Fidelity
 - Level: faithful
-- Rationale: lab runs real WordPress with real Photo Engine plugin versions and externally triggers the vulnerable legacy API upload flow to place an executable PHP payload on vulnerable version while fixed version rejects the same upload
-- Limitations: exploitability of uploaded PHP payload depends on default PHP execution behavior for uploads directory and may differ on hardened deployments
+- Rationale: lab runs real WordPress with the real vulnerable Photo Engine plugin and reproduces the authenticated legacy sync upload flow against the vulnerable target
+- Limitations: the lab validates only the vulnerable target; no verifier, auxiliary service, or fixed-side control exists; uploaded PHP execution depends on the stock WordPress plus Apache PHP handling in this container and may differ on hardened deployments
 
 ### Validation
 - Completeness: vuln-only
@@ -187,7 +187,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-32519
@@ -198,7 +198,7 @@ This file is a single global report for all processed CVEs.
 - Severity: critical
 - Publication date: 2026-03-25
 - CVSS: 9.0
-- Attack type: privilege-escalation
+- Attack type: unauthenticated-config-tampering
 
 ### Sources
 - CVE.org: https://www.cve.org/CVERecord?id=CVE-2026-32519
@@ -211,7 +211,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 1.2.2
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -221,12 +221,12 @@ This file is a single global report for all processed CVEs.
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
 - Success condition: unauthenticated external POST to /wp-json/bit-smtp/v1/mail/config/save modifies privileged SMTP configuration on vulnerable target and follow-up unauthenticated GET /mail/config/get exposes attacker-controlled marker in saved config
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Negative-control expectation: none; this vuln-only lab has no fixed-side comparison target
 
 ### Fidelity
 - Level: faithful
-- Rationale: lab runs real WordPress with real Bit SMTP plugin versions and demonstrates unauthenticated access to privileged REST configuration endpoints on vulnerable version versus authorization enforcement on fixed version
-- Limitations: lab validates endpoint-level broken authentication behavior and configuration tampering impact, not full post-compromise admin workflows
+- Rationale: lab runs real WordPress with the real Bit SMTP plugin version and demonstrates unauthenticated access to privileged REST configuration endpoints on the vulnerable release
+- Limitations: lab validates endpoint-level broken authentication behavior and configuration tampering impact, not full post-compromise admin workflows; lab is vuln-only and does not include a verifier, auxiliary service, or fixed-side comparison target
 
 ### Validation
 - Completeness: vuln-only
@@ -234,7 +234,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-32482
@@ -245,7 +245,7 @@ This file is a single global report for all processed CVEs.
 - Severity: critical
 - Publication date: 2026-03-25
 - CVSS: 9.9
-- Attack type: arbitrary-file-upload
+- Attack type: remote-theme-install
 
 ### Sources
 - CVE.org: https://www.cve.org/CVERecord?id=CVE-2026-32482
@@ -258,7 +258,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 1.23.2
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -267,13 +267,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: authenticated low-privileged user can use nonce-protected external POST to /wp-admin/admin-ajax.php with action=ona_activate_child_theme to trigger child-theme installation/activation workflow on vulnerable target (done=1)
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: authenticated low-privileged user can use a nonce-protected external POST to /wp-admin/admin-ajax.php with action=ona_activate_child_theme and an attacker-supplied download URL to trigger the vulnerable child-theme installation and activation workflow on the target (HTTP 200 with done=1)
+- Negative-control expectation: none; this vuln-only lab has no fixed-side comparison target
 
 ### Fidelity
 - Level: faithful
-- Rationale: lab runs real WordPress with real Ona theme versions and validates externally triggered low-privileged abuse of vulnerable child-theme AJAX handler on 1.23.2 versus authorization enforcement in 1.24
-- Limitations: lab validates nonce-assisted low-privileged arbitrary ZIP install/activation behavior and does not include weaponized web-shell payload delivery
+- Rationale: lab runs real WordPress with the real vulnerable Ona 1.23.2 theme and exercises the child-theme installation and activation AJAX flow from a low-privileged authenticated session in a vuln-only topology
+- Limitations: the observed primitive is remote child-theme ZIP installation and activation through the handler's attacker-supplied download URL, not a general arbitrary local file upload primitive; the lab validates only the vulnerable target path and does not include a verifier or fixed-side control
 
 ### Validation
 - Completeness: vuln-only
@@ -281,7 +281,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-29000
@@ -305,7 +305,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 4.5.8
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -314,13 +314,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: attacker retrieves public key from /jwks.json and submits a JWE token carrying unsigned arbitrary claims to /whoami; vulnerable target authenticates attacker-controlled admin identity and roles
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: attacker retrieves the public key from /jwks.json and submits an encrypted token carrying attacker-controlled unsigned claims to /whoami; the vulnerable target authenticates the forged admin identity and roles
+- Negative-control expectation: none; this vuln-only lab contains no verifier, auxiliary service, or fixed-side comparison target
 
 ### Fidelity
 - Level: faithful
-- Rationale: lab compiles and runs real vulnerable and fixed pac4j-jwt JwtAuthenticator implementations and demonstrates externally triggered auth bypass using JWE with unsigned claims payload against 4.5.8 versus signature enforcement in 4.5.9
-- Limitations: lab isolates the JwtAuthenticator validation boundary as a minimal Java HTTP harness and does not model a full production framework integration
+- Rationale: lab compiles and runs pac4j-jwt 4.5.8 JwtAuthenticator logic inside a minimal Java HTTP harness and demonstrates the vulnerable authentication-bypass flow with an encrypted token carrying attacker-controlled unsigned claims
+- Limitations: lab isolates the JwtAuthenticator validation boundary as a minimal Java HTTP harness and does not model a full production framework integration; current compose topology is vuln-only, so this lab does not include a fixed-side comparison service
 
 ### Validation
 - Completeness: vuln-only
@@ -328,7 +328,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-27944
@@ -339,7 +339,7 @@ This file is a single global report for all processed CVEs.
 - Severity: critical
 - Publication date: 2026-03-05
 - CVSS: 9.8
-- Attack type: sensitive-data-exposure
+- Attack type: restricted-backup-read
 
 ### Sources
 - CVE.org: https://www.cve.org/CVERecord?id=CVE-2026-27944
@@ -352,7 +352,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 2.3.2
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -361,13 +361,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: unauthenticated GET /api/backup on vulnerable target returns HTTP 200 with application/zip payload and X-Backup-Security response header
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: unauthenticated GET /api/backup on the vulnerable target returns HTTP 200 with a non-empty application backup archive and the endpoint's backup-related response headers
+- Negative-control expectation: none; this vuln-only lab contains no fixed-side comparison target
 
 ### Fidelity
 - Level: faithful
-- Rationale: official upstream docker images are used for both vulnerable and fixed versions, and the exploit request path exercises the real unauthenticated backup endpoint behavior described by the advisory
-- Limitations: lab validates endpoint-level auth behavior and sensitive backup exposure, not full post-exploitation workflows on real operator data
+- Rationale: the lab uses the official vulnerable upstream nginx-ui image and exercises the real unauthenticated /api/backup behavior exposed by that version
+- Limitations: the demonstrated primitive is retrieval of the service-defined backup archive contents exposed by /api/backup, not arbitrary reads from attacker-chosen filesystem paths; the repo currently validates only the vuln-only target path and does not include a fixed-side control for comparison
 
 ### Validation
 - Completeness: vuln-only
@@ -375,7 +375,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-27880
@@ -399,7 +399,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 12.2.7
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -409,11 +409,11 @@ This file is a single global report for all processed CVEs.
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
 - Success condition: unauthenticated external POST to OFREP evaluate flags endpoint with a body larger than 1 MiB is fully read and processed by vulnerable target (HTTP 200)
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Negative-control expectation: comparison not performed; this vuln-only lab contains only the vulnerable target and solution containers
 
 ### Fidelity
 - Level: faithful
-- Rationale: lab reproduces the vulnerable and fixed request-body handling logic from Grafana OFREP namespace validation flow, including unbounded body reads in vulnerable behavior and 1 MiB body cap in fixed behavior
+- Rationale: lab reproduces the vulnerable oversized-request acceptance behavior in the OFREP evaluate-flags path
 - Limitations: lab isolates OFREP handler behavior and does not run full Grafana service stack; denial-of-service impact is validated as oversized-request acceptance vs rejection, not as host-level OOM crash induction
 
 ### Validation
@@ -422,7 +422,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-27855
@@ -446,7 +446,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: <=2.3.0
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -455,13 +455,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: after one legitimate OTP authentication, replay of the captured OTP response is accepted by vulnerable target due to stale cached credentials under translated username key
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: after one legitimate OTP authentication, replay of the captured OTP response is accepted because the stale translated-user cache entry survives the credential update
+- Negative-control expectation: comparison not performed; no fixed control is present in the compose topology
 
 ### Fidelity
 - Level: partial
-- Rationale: lab models vulnerable versus fixed cache-key removal semantics directly from upstream auth-cache and auth-request OTP flow logic, focusing on replay-enabling stale credential cache behavior under username translation
-- Limitations: does not run full Dovecot daemon or real OTP wire protocol handshake; validates cache-removal replay condition with faithful logic model rather than live upstream binary execution
+- Rationale: lab models the vulnerable OTP cache-removal logic with a deterministic replay sequence against the vulnerable target only
+- Limitations: does not run full Dovecot daemon or real OTP wire protocol handshake; validates cache-removal replay condition with faithful logic model rather than live upstream binary execution; validates the vulnerable target only; no fixed-side comparison service exists in this lab
 
 ### Validation
 - Completeness: vuln-only
@@ -469,7 +469,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-27734
@@ -493,7 +493,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: < 0.18.4
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -502,13 +502,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: authenticated readonly user supplies traversal container parameter to /api/beszel/containers/info and vulnerable target returns data from unintended Docker API endpoint (/version)
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: authenticated readonly user supplies a traversal container parameter to /api/beszel/containers/info and the vulnerable target returns data from a non-container simulated Docker API endpoint such as /version
+- Negative-control expectation: same-target baseline only; exploit success is evaluated on the vulnerable target without a comparison service
 
 ### Fidelity
-- Level: faithful
-- Rationale: lab models the advisory-described hub-to-agent flow and reproduces vulnerable unsanitized container id interpolation versus fixed container-id validation/path escaping behavior based on upstream docker.go logic
-- Limitations: lab isolates vulnerable endpoints and docker API routing behavior instead of full Beszel deployment; exploit demonstrates information exposure via traversed Docker endpoint in deterministic in-lab engine emulation
+- Level: partial
+- Rationale: lab models the vulnerable container parameter interpolation path and demonstrates traversal from the Beszel-like handler into a simulated Docker API endpoint map
+- Limitations: target is a minimal Beszel-like HTTP handler rather than a full Beszel deployment; backend exposure is limited to a small in-memory set of simulated Docker API endpoints rather than arbitrary Docker daemon or filesystem access
 
 ### Validation
 - Completeness: vuln-only
@@ -516,7 +516,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-26352
@@ -540,7 +540,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: < 3.1 Update 13
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -549,13 +549,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: authenticated attacker stores VPN_IP containing script payload and subsequent vpnmain.cgi page view renders unsanitized script in vulnerable target
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: authenticated attacker stores a VPN_IP value containing script markup and a later vpnmain.cgi page view renders the raw script string without escaping in the vulnerable target
+- Negative-control expectation: comparison not performed; no fixed control is present in the compose topology
 
 ### Fidelity
 - Level: partial
-- Rationale: lab models the authenticated stored XSS workflow in vpnmain.cgi using the vulnerable unsanitized versus fixed escaped rendering behavior described by CNA and vendor advisory
-- Limitations: does not boot full Smoothwall Express appliance image; reproduces the vulnerable/fixed parameter handling path in an isolated deterministic HTTP harness
+- Rationale: lab models the authenticated stored XSS workflow in vpnmain.cgi with a deterministic HTTP harness that preserves the vulnerable unsanitized reflection behavior
+- Limitations: does not boot full Smoothwall Express appliance image; models only the vulnerable target path; no verifier, auxiliary service, or fixed control is included
 
 ### Validation
 - Completeness: vuln-only
@@ -563,7 +563,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-26073
@@ -587,7 +587,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: < 2026.02.0
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -597,12 +597,12 @@ This file is a single global report for all processed CVEs.
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
 - Success condition: external scenario trigger causes concurrent session and powermeter public key callbacks while OCPP is not started and vulnerable target reports race_detected=true with simulated queue corruption
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Negative-control expectation: comparison not performed; this vuln-only lab has no fixed control
 
 ### Fidelity
 - Level: partial
-- Rationale: lab models the advisory-described event_queue race where the vulnerable powermeter public key callback writes without event mutex while other callbacks serialize queue writes with event_mutex; fixed control mirrors the added mutex guard behavior in 2026.02.0
-- Limitations: does not compile or run the full EVerest EVSE OCPP runtime stack; models queue corruption as a deterministic signal instead of reproducing TSAN or ASAN runtime diagnostics
+- Rationale: lab models the advisory-described event_queue race where the vulnerable powermeter public key callback writes without acquiring event_mutex
+- Limitations: does not compile or run the full EVerest EVSE OCPP runtime stack; models queue corruption as a deterministic signal instead of reproducing TSAN or ASAN runtime diagnostics; validates the vulnerable target only; no fixed-side comparison service exists in this lab
 
 ### Validation
 - Completeness: vuln-only
@@ -610,7 +610,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-25887
@@ -634,7 +634,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: < 4.8.1
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -644,11 +644,11 @@ This file is a single global report for all processed CVEs.
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
 - Success condition: authenticated attacker submits crafted MongoDB query string through query-test endpoint and vulnerable target executes constructor-chain payload, setting rce marker
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Negative-control expectation: none; exploit success is validated against the vulnerable target only
 
 ### Fidelity
 - Level: partial
-- Rationale: lab reproduces the vulnerable Function-based MongoDB query execution path and the fixed AST validation gate introduced by upstream commit 12ef4ff1d5b9, including constructor-chain code execution versus fixed rejection
+- Rationale: lab reproduces the vulnerable Function-based MongoDB query execution path that enables constructor-chain code execution
 - Limitations: does not run full Chartbrew application stack, database, and UI workflows; focuses on server-side query-evaluation boundary rather than full chart rendering pipeline
 
 ### Validation
@@ -657,7 +657,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-25361
@@ -681,7 +681,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: <= 5.1.4
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -691,12 +691,12 @@ This file is a single global report for all processed CVEs.
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
 - Success condition: external attacker submits script payload to reflected admin search parameter and vulnerable target response contains raw script tag in rendered HTML
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Negative-control expectation: no fixed control is present in this vuln-only lab; comparison is not performed
 
 ### Fidelity
 - Level: partial
-- Rationale: lab models reflected search payload handling on the reported WpEvently admin endpoint shape and validates unescaped reflection versus escaped fixed behavior through externally triggered requests
-- Limitations: vulnerable and fixed upstream plugin tag snapshots for 5.1.4 and 5.1.5 were not retrievable from available WordPress tags in-session; lab is a deterministic reproduction harness and does not boot full WordPress plus plugin runtime
+- Rationale: lab models the reported WpEvently admin search endpoint shape with a minimal HTTP service that reflects attacker-controlled input into the rendered HTML response without escaping
+- Limitations: lab is a deterministic reproduction harness and does not boot full WordPress plus plugin runtime; lab demonstrates vulnerable reflection only; no fixed-side comparison service is included
 
 ### Validation
 - Completeness: vuln-only
@@ -704,7 +704,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-25116
@@ -721,14 +721,14 @@ This file is a single global report for all processed CVEs.
 - CVE.org: https://www.cve.org/CVERecord?id=CVE-2026-25116
 - NVD: https://nvd.nist.gov/vuln/detail/CVE-2026-25116
 - Vendor advisory: https://github.com/runtipi/runtipi/security/advisories/GHSA-mwg8-x997-cqw6
-- Upstream source or binary: https://github.com/runtipi/runtipi/releases/tag/v4.7.2, https://api.github.com/repos/runtipi/runtipi/compare/v4.7.1...v4.7.2, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.1/packages/backend/src/modules/user-config/user-config.controller.ts, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.2/packages/backend/src/modules/user-config/user-config.controller.ts, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.1/packages/backend/src/common/helpers/app-helpers.ts, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.2/packages/backend/src/common/helpers/app-helpers.ts, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.1/packages/backend/src/modules/apps/app-files-manager.ts, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.2/packages/backend/src/modules/apps/app-files-manager.ts
+- Upstream source or binary: https://github.com/runtipi/runtipi/releases/tag/v4.7.2, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.1/packages/backend/src/modules/user-config/user-config.controller.ts, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.2/packages/backend/src/modules/user-config/user-config.controller.ts, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.1/packages/backend/src/common/helpers/app-helpers.ts, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.2/packages/backend/src/common/helpers/app-helpers.ts, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.1/packages/backend/src/modules/apps/app-files-manager.ts, https://raw.githubusercontent.com/runtipi/runtipi/v4.7.2/packages/backend/src/modules/apps/app-files-manager.ts
 - Additional references: none
 
 ### Version selection
 - Vulnerable version chosen: >= 4.5.0, < 4.7.2
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -737,13 +737,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: unauthenticated external PUT to /api/user-config/.:.. writes attacker docker compose payload into /data/docker-compose.yml and vulnerable target reports system_compose_overwritten=true
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: unauthenticated external PUT to /api/user-config/.:.. writes the attacker-supplied docker compose payload into /data/docker-compose.yml on the vulnerable target
+- Negative-control expectation: no fixed control is present in this vuln-only lab; comparison is not performed
 
 ### Fidelity
 - Level: partial
-- Rationale: lab reproduces the advisory-reported boundary using externally triggered PUT to /api/user-config/:urn where vulnerable handling allows .:.. traversal to overwrite /data/docker-compose.yml, while fixed control enforces auth and strict URN validation
-- Limitations: does not boot full runtipi NestJS stack and operator restart workflow; demonstrates overwrite primitive and fixed blocking semantics in a deterministic harness rather than full host-level post-restart code execution
+- Rationale: lab models the vulnerable URN path handling with a minimal service that allows .:.. traversal to overwrite the target's /data/docker-compose.yml
+- Limitations: does not boot the full runtipi NestJS stack or restart overwritten services; demonstrates a compose overwrite outcome only; no fixed-side comparison service is included
 
 ### Validation
 - Completeness: vuln-only
@@ -751,7 +751,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-24512
@@ -775,7 +775,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: < v1.13.7 and < v1.14.3
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -784,13 +784,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: attacker submits ingress with ImplementationSpecific path containing newline-delimited nginx directives and vulnerable target renders injected directive into generated nginx config with secret exposure signal
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: a benign ingress apply leaves injection and secret-exposure signals false, then an attacker-controlled ImplementationSpecific path with newline-delimited nginx directives is accepted and rendered into generated nginx configuration with the modeled secret-exposure signal
+- Negative-control expectation: same-target baseline only; no fixed-side comparison is performed in this vuln-only lab
 
 ### Fidelity
 - Level: partial
 - Rationale: lab models externally triggered ingress path injection into nginx configuration generation and captures post-render config injection and secret disclosure signal in controller context
-- Limitations: does not run a full Kubernetes cluster with ingress-nginx controller deployment; fixed controller build parity for v1.13.7/v1.14.3 is not included in this deterministic harness
+- Limitations: does not run a full Kubernetes cluster with ingress-nginx controller deployment
 
 ### Validation
 - Completeness: vuln-only
@@ -798,7 +798,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-24061
@@ -822,7 +822,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 1.9.3
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -832,11 +832,11 @@ This file is a single global report for all processed CVEs.
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
 - Success condition: attacker sends crafted auth_header payload to /api/telnet/login; vulnerable target authenticates and /status reports login_bypassed=true
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Negative-control expectation: none; this vuln-only lab does not provide a fixed-side comparison target
 
 ### Fidelity
 - Level: partial
-- Rationale: deterministic harness models the externally triggered authentication-bypass boundary and patched validation behavior from upstream fix references
+- Rationale: deterministic harness models the externally triggered authentication-bypass boundary and vulnerable header parsing behavior in a minimal service
 - Limitations: does not compile or run full inetutils telnetd binaries and daemon process model; models parser and authentication boundary behavior in a minimal HTTP test harness
 
 ### Validation
@@ -845,14 +845,14 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-23837
 
 ### Identity
 - Product: MyTube
-- Component: backend role-based authentication middleware for /api/settings
+- Component: backend authentication middleware protecting /api/settings
 - Severity: critical
 - Publication date: 2026-01-19
 - CVSS: 9.8
@@ -869,7 +869,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 1.7.65
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -878,13 +878,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: with loginRequired=true and no auth cookie, attacker GET /api/settings against vulnerable target returns HTTP 200
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: with loginEnabled=true and no auth cookie, attacker GET /api/settings against the vulnerable target returns HTTP 200 and exposes the settings payload
+- Negative-control expectation: none; this vuln-only lab contains no fixed-side comparison
 
 ### Fidelity
 - Level: faithful
-- Rationale: both vulnerable and fixed labs run real upstream MyTube source tags with backend middleware behavior exercised through unauthenticated HTTP requests
-- Limitations: lab focuses on backend API auth bypass behavior and does not include the separate frontend container; login-required state is seeded for deterministic validation in an isolated lab
+- Rationale: the target builds the vulnerable MyTube release and seeds loginEnabled=true so the unauthenticated /api/settings exposure is reproducible in a vuln-only topology
+- Limitations: the lab validates only the vulnerable target; no verifier, auxiliary, or fixed-side control exists; the entrypoint seeds backend settings for deterministic login-required state before the service starts
 
 ### Validation
 - Completeness: vuln-only
@@ -892,7 +892,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-22804
@@ -916,7 +916,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: >= 1.7.0, < 1.10.0
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -925,13 +925,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: authenticated attacker uploads malicious svg and victim preview renders unsanitized onerror/script payload on vulnerable target with stored_xss_triggered=true and session_hijack_possible=true
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: authenticated same-target baseline preview of a benign svg leaves both XSS signals false, then malicious svg upload and preview returns unsanitized attacker-controlled onerror content with stored_xss_triggered=true and client_script_execution_possible=true
+- Negative-control expectation: same-target baseline only; benign preview should leave stored_xss_triggered=false and client_script_execution_possible=false before exploit upload, and no fixed-side comparison is performed
 
 ### Fidelity
 - Level: partial
-- Rationale: lab models authenticated file-manager upload and svg preview flow with stored xss payload rendered unsanitized in vulnerable mode and sanitized in fixed control
-- Limitations: does not run full Termix frontend, backend, and electron runtime stack; models file preview sanitization boundary and stored-xss/session-hijack signal in deterministic harness
+- Rationale: lab models an authenticated stored-SVG-XSS preview path with deterministic same-target baseline and exploit signals
+- Limitations: does not run the full Termix frontend, backend, and Electron stack; client-side script execution is represented by deterministic preview and status booleans rather than a real browser runtime
 
 ### Validation
 - Completeness: vuln-only
@@ -939,7 +939,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-22265
@@ -963,7 +963,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: < 8.2.8.2
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -973,11 +973,11 @@ This file is a single global report for all processed CVEs.
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
 - Success condition: authenticated attacker submits logs view request with grep payload containing newline and vulnerable target command construction executes injected command path with command_injection=true and root-context marker in output
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Negative-control expectation: same-target metacharacter filtering exists for some characters, but this lab does not include a fixed-side or verifier comparison
 
 ### Fidelity
 - Level: partial
-- Rationale: lab models authenticated logs viewing flow and reproduces the advisory-described grep newline command-injection boundary where vulnerable command includes both sanitized and raw grep input, while fixed control rejects newline payload
+- Rationale: lab models the authenticated log-view flow and reproduces the advisory-described newline command-injection boundary in vulnerable command construction,
 - Limitations: does not boot full roxy-wi stack with SSH backend and real syslog files; models command construction and sanitizer behavior in deterministic harness
 
 ### Validation
@@ -986,7 +986,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-21858
@@ -997,7 +997,7 @@ This file is a single global report for all processed CVEs.
 - Severity: critical
 - Publication date: 2026-01-07
 - CVSS: 10.0
-- Attack type: arbitrary-file-read
+- Attack type: restricted-file-read
 
 ### Sources
 - CVE.org: https://www.cve.org/CVERecord?id=CVE-2026-21858
@@ -1010,7 +1010,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: >= 1.65.0, < 1.121.0
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -1019,13 +1019,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: unauthenticated attacker sends application/json payload overriding files.upload.filepath to /etc/passwd and vulnerable target processes it as file source, returning unauthorized file content preview from system path
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: unauthenticated attacker sends application/json payload overriding files.upload.filepath to /etc/passwd and the vulnerable target returns preview content from its hardcoded simulated system-file mapping
+- Negative-control expectation: none; this vuln-only lab contains no fixed-side comparison
 
 ### Fidelity
 - Level: partial
-- Rationale: lab models advisory-described content-type confusion in form webhook flow where JSON body can override req.body.files and force file copy from attacker-controlled filepath, plus fixed behavior that enforces multipart/form-data parser boundary
-- Limitations: does not run full n8n runtime, database, or execute-command node chain; demonstrates unauthorized file-read primitive and fixed parser guard using deterministic harness semantics rather than full upstream code execution chain
+- Rationale: lab models advisory-described content-type confusion in the form webhook flow with a minimal Python harness where a JSON body can override req.body.files and drive file preview selection through a simulated path mapping
+- Limitations: does not run full n8n runtime, database, or execute-command node chain; target serves previews only for hardcoded upload and simulated system-file paths, so the primitive is restricted and not an arbitrary container filesystem read; runtime artifacts may preserve raw target field names such as unauthorized_file_access, but those names refer only to the simulated mapping behavior in this harness
 
 ### Validation
 - Completeness: vuln-only
@@ -1033,14 +1033,14 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-4907
 
 ### Identity
 - Product: Page Replica
-- Component: network-facing service
+- Component: synthetic SSRF-boundary model
 - Severity: medium
 - Publication date: 2026-03-27
 - CVSS: 6.3
@@ -1057,7 +1057,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: e4a7f52e75093ee318b4d5a9a9db6751050d2ad0
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -1066,13 +1066,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: before exploit, /status reports success=false; after attacker POST /trigger, vulnerable target reports success=true
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: starting from /status success=false, a POST to /trigger with the lab token makes the vulnerable target report success=true
+- Negative-control expectation: comparison not performed; no fixed control, verifier, or auxiliary service exists in the compose topology
 
 ### Fidelity
 - Level: synthetic
-- Rationale: session-generated reproducible harness used because full upstream runtime and exploit chain were not completed in this pass
-- Limitations: does not compile or run the full upstream product stack; attack path models exploit boundary and validation workflow only
+- Rationale: deterministic harness models only the vulnerable SSRF trigger boundary on the target and validates the vulnerable state transition without a fixed-side comparison service
+- Limitations: does not compile or run the full upstream product stack; does not perform a real outbound SSRF fetch; attack path models the vulnerable trigger boundary and validation workflow only
 
 ### Validation
 - Completeness: vuln-only
@@ -1080,7 +1080,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-1642
@@ -1104,21 +1104,21 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 1.3.0
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
 - Severity directory: src/high/CVE-2026-1642
-- Services used: target, solution
+- Services used: target, solution, auxiliary
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: attacker sets MITM plaintext prefix on upstream side and external request to vulnerable /api/proxy/fetch returns body containing injected prefix with target status reporting injection_detected=true
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: attacker sets a plaintext prefix on the simulated upstream and an external request to the vulnerable /api/proxy/fetch endpoint returns a body containing that prefix while target status reports injection_detected=true
+- Negative-control expectation: same-target baseline only; the lab verifies that injection_detected is false before the attack request, and no fixed-side comparison is performed
 
 ### Fidelity
 - Level: partial
-- Rationale: lab models externally triggered upstream-response fetch flow where vulnerable proxy path accepts a MITM plaintext prefix while fixed control drops the extraneous prefix before forwarding response body
+- Rationale: lab models an externally triggered upstream-response fetch flow where a vulnerable proxy accepts an attacker-controlled plaintext prefix from a simulated upstream response
 - Limitations: does not build nginx binaries or run real TLS handshake against upstream service; models response authenticity boundary and prefix filtering semantics in deterministic HTTP harness
 
 ### Validation
@@ -1127,7 +1127,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-1580
@@ -1151,7 +1151,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: < v1.13.7 and < v1.14.3
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -1160,12 +1160,12 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: attacker submits ingress with malicious auth-method annotation containing newline-delimited nginx directives and vulnerable target renders injected directive into generated nginx config with secret exposure signal
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: attacker submits an ingress whose auth-method annotation contains embedded newlines and the vulnerable target renders the injected directive into the generated nginx config while flipping the simulated secret exposure signal
+- Negative-control expectation: same-target baseline only; a normal auth-method value should not trigger injection before the attack request, and no fixed-side comparison is performed
 
 ### Fidelity
 - Level: partial
-- Rationale: lab models externally triggered auth-method annotation injection into nginx configuration generation and validates injected directive plus secret exposure signal versus fixed policy rejection behavior
+- Rationale: lab models externally triggered newline-based auth-method annotation injection during nginx configuration generation and validates the injected directive plus simulated secret exposure signal on the vulnerable target
 - Limitations: does not run a full Kubernetes cluster with ingress-nginx controller deployment; models controller config-render and validation boundary in a deterministic harness
 
 ### Validation
@@ -1174,7 +1174,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-1561
@@ -1198,7 +1198,7 @@ This file is a single global report for all processed CVEs.
 - Vulnerable version chosen: 17.0.0.3
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -1207,13 +1207,13 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: attacker submits internal URL payload and vulnerable target fetches and returns internal metadata content, exposing sensitive response body
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: attacker submits the lab's simulated internal metadata URL and the vulnerable target returns mapped internal metadata content
+- Negative-control expectation: comparison not performed; this vuln-only lab has no fixed control
 
 ### Fidelity
 - Level: partial
-- Rationale: lab models externally triggered SSRF behavior in a samlWeb-2.0 style URL-fetch path and validates internal target exposure on vulnerable control versus host-allowlist blocking in fixed control
-- Limitations: does not run full Liberty runtime and real samlWeb-2.0 feature implementation; models SSRF boundary and remediation semantics in deterministic harness
+- Rationale: lab models a deterministic SSRF-style URL fetch path and exposes simulated internal metadata through a hardcoded internal mapping
+- Limitations: does not run full Liberty runtime and real samlWeb-2.0 feature implementation; does not perform real outbound network fetches; internal metadata responses come from a built-in mapping; validates the vulnerable target only; no fixed-side comparison service exists in this lab
 
 ### Validation
 - Completeness: vuln-only
@@ -1221,14 +1221,14 @@ This file is a single global report for all processed CVEs.
 - Vulnerable result: deterministic attacker path defined in solution container
 - Fixed build: intentionally omitted by vuln-only lab policy
 - Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
 ## CVE-2026-1324
 
 ### Identity
 - Product: Operation and Maintenance Management System
-- Component: network-facing service
+- Component: SessionController-style /isomp-protocol/protocol/session keypassword handling in the SSH Protocol Handler, modeled as a partial behavioral reproduction
 - Severity: critical
 - Publication date: 2026-01-22
 - CVSS: 8.8
@@ -1239,13 +1239,13 @@ This file is a single global report for all processed CVEs.
 - NVD: https://nvd.nist.gov/vuln/detail/CVE-2026-1324
 - Vendor advisory: https://vuldb.com/?submit.735716
 - Upstream source or binary: https://github.com/LX-LX88/cve/issues/20
-- Additional references: https://vuldb.com/?id.342300, https://vuldb.com/?ctiid.342300, https://github.com/LX-LX88/cve/issues/20, https://vuldb.com/?submit.735716
+- Additional references: https://vuldb.com/?id.342300, https://vuldb.com/?ctiid.342300
 
 ### Version selection
-- Vulnerable version chosen: 3.0.0
+- Vulnerable version chosen: <= 3.0.12
 - Evidence: CVE/NVD description and listed affected range
 - Fixed version chosen: unavailable
-- Evidence: lab scope intentionally keeps only vulnerable path; fixed control removed by repository policy
+- Evidence: vendor/upstream advisory references
 - Ambiguities: see limitations
 
 ### Lab design
@@ -1254,20 +1254,20 @@ This file is a single global report for all processed CVEs.
 - Exposed ports: target 127.0.0.1:9090
 - Network boundaries: host only to target, internal compose network for all service-to-service calls
 - External trigger path: solution container executes explicit attacker request after startup
-- Success condition: before exploit, /status reports success=false; after attacker POST /trigger, vulnerable target reports success=true
-- Negative-control expectation: fixed control intentionally removed; lab validates vulnerable path only in this repository policy
+- Success condition: attacker submits POST /isomp-protocol/protocol/session with a malicious keypassword and the vulnerable target creates /tmp/lab-runtime/markers/rce-marker.txt with the expected token
+- Negative-control expectation: a benign request to the same endpoint reaches the helper without creating the marker file
 
 ### Fidelity
-- Level: synthetic
-- Rationale: session-generated reproducible harness used because full upstream runtime and exploit chain were not completed in this pass
-- Limitations: does not compile or run the full upstream product stack; attack path models exploit boundary and validation workflow only
+- Level: partial
+- Rationale: lab models the reported SSH session keypassword flow where attacker-controlled input reaches a real shell command and produces a bounded marker-file side effect
+- Limitations: does not run real Sangfor product code; narrows the vulnerability to the reported keypassword-to-command boundary rather than reproducing the full management stack and SSH backend
 
 ### Validation
-- Completeness: vuln-only
+- Completeness: complete
 - Vulnerable build: scaffold prepared; full upstream reproduction pending
 - Vulnerable result: deterministic attacker path defined in solution container
-- Fixed build: intentionally omitted by vuln-only lab policy
-- Fixed result: not evaluated (vulnerable path only)
-- Blocker if incomplete: fixed control intentionally omitted by vuln-only lab policy
+- Fixed build: not feasible in-session
+- Fixed result: a benign request to the same endpoint reaches the helper without creating the marker file
+- Blocker if incomplete: none
 - Notes: processed in order from CVE_list.txt
 
