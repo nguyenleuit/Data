@@ -1,0 +1,342 @@
+<?php
+
+class Meow_WPLR_Sync_API {
+
+	private $running = true;
+	private $ob_enabled = false;
+	private $ob = false;
+	private $user = null;
+	private $error = null;
+	private $result = array(
+		'success' => false,
+		'error' => array(
+			'message' => 'The API did not respond to that request. Please contact the developer.'
+		)
+	);
+
+	public function __construct() {
+		if ( $this->endsWith( $_SERVER['REQUEST_URI'], '/?wplr-sync-api' ) ) {
+			$this->ob_enabled = get_option( 'wplr_catch_errors', false );
+			add_action( 'init', array ( $this, 'handleRequest' ), 10, 0 );
+			define( 'DOING_WPLR_REQUEST', 1 );
+		}
+	}
+
+	function endsWith( $haystack, $needle ) {
+		if ( $needle === '' )
+			return true;
+		$diff = strlen( $haystack ) - strlen( $needle );
+		return $diff >= 0 && strpos( $haystack, $needle, $diff ) !== false;
+	}
+
+	public function handleRequest() {
+		global $wplr;
+		$this->initialize();
+
+		// GET could returns some information about Photo Engine
+		if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) {
+			$this->response( array( 'message' => "Photo Engine says hi!" ) );
+		}
+		// Upload
+		else if ( isset( $_POST['action'] ) && $_POST['action'] === 'sync' ) {
+			if ( !$user = $this->auth( $_POST['token'] ) ) {
+				$this->response( null, false, $this->error );
+				$this->finalize();
+			}
+			$wplr->log( "Action: sync" );
+			$this->sync( $_POST );
+		}
+		// Other action
+		else {
+			$body = file_get_contents('php://input');
+			$args = json_decode( $body );
+			if ( !$user = $this->auth( $args->token ) ) {
+				$this->response( null, false, $this->error );
+				$this->finalize();
+			}
+			$wplr->log( "Action: " . $args->action );
+			if ( !$user = $this->auth( $args->token ) )
+				$this->response( null, false, $this->error );
+			else if ( $args->action === 'presync' )
+				$this->presync( $args );
+			else if ( $args->action === 'sync_collection' )
+				$this->sync_collection( $args );
+			else if ( $args->action === 'delete_collection' )
+				$this->delete_collection( $args );
+			else if ( $args->action === 'order_collection' )
+				$this->order_collection( $args );
+			else if ( $args->action === 'delete' )
+				$this->delete( $args );
+			else if ( $args->action === 'userinfo' )
+				$this->userinfo( $args );
+			else if ( $args->action === 'list_wpids' )
+				$this->list_wpids( $args );
+			else if ( $args->action === 'unlink' )
+				$this->unlink( $args );
+			else if ( $args->action === 'link' )
+				$this->link( $args );
+			else if ( $args->action === 'linkinfo_upload' )
+				$this->linkinfo_upload( $args );
+			else if ( $args->action === 'linkinfo' )
+				$this->linkinfo( $args );
+			else if ( $args->action === 'list_unlinks' )
+				$this->list_unlinks( $args );
+			else if ( $args->action === 'list_sync_media' )
+				$this->list_sync_media( $args );
+			else
+				$this->response( null, false, "Action not available." );
+		}
+		$this->finalize();
+	}
+
+	function initialize() {
+		global $wplr;
+		if ( $this->ob_enabled ) {
+			if ( ob_start( array( $this, 'buffer_end' ) ) ) {
+				$this->ob = true;
+				$wplr->log( "Output buffering started." );
+			}
+			else {
+				$wplr->log( "Output buffering did not start." );
+			}
+		}
+		$this->running = true;
+	}
+
+	function buffer_end( $buffer ) {
+		return "";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see Meow_WPLR_Sync_API::auth()
+	 */
+	function auth( $token ) {
+		global $wplr, $wpdb;
+
+		if ( empty( $token ) ) {
+			$this->error = "Authentification is missing.";
+			$wplr->log( $this->error );
+			return false;
+		}
+		$prefix = defined( 'BLOG_ID_CURRENT_SITE' ) ? $wpdb->get_blog_prefix( BLOG_ID_CURRENT_SITE ) : $wpdb->prefix;
+		$tbl_meta = defined('CUSTOM_USER_META_TABLE' ) ? CUSTOM_USER_META_TABLE : $prefix . "usermeta";
+		$userId = $wpdb->get_var( $wpdb->prepare( "SELECT user_id FROM $tbl_meta
+			WHERE meta_value = %s AND meta_key = %s", $token, 'wplr_auth_token' ) );
+		if ( empty( $userId ) ) {
+			$this->error = 'Incorrect token. Visit your Profile (on your WordPress site) to get a new one.';
+			$wplr->log( 'Incorrect token.');
+			return false;
+		}
+		$this->user = get_userdata( $userId );
+		if ( empty( $this->user ) ) {
+			$this->error = 'User does not exist.';
+			$wplr->log( 'User does not exist.');
+			return false;
+		}
+		$wplr->log( "Authenticated as " . $this->user->user_login );
+		return $this->user;
+	}
+
+	/**
+	 * The final post-process for every responce
+	 * @param array|string|Meow_WPLR_Sync_LRInfo $payload
+	 */
+	function response( $payload, $success = true, $error = null ) {
+		global $wplr;
+		$wplr->get_version();
+		$r = array(
+			'success' => $success,
+			'payload' => $payload,
+			'error' => is_string( $error ) ? array( 'message' => $error ) : $error,
+			'version' => $wplr->get_version(),
+		);
+		$this->result = &$r;
+		return $r;
+	}
+
+	function finalize() {
+		if ( $this->ob ) {
+			global $wplr;
+			$content = ob_get_contents();
+			if ( !empty( $content ) ) {
+				error_log( "There was unwanted activity during the Photo Engine process (probably generated by another plugin). Request: " . $_SERVER['REQUEST_URI'] . ". The output which was caught will follow: " . $content );
+				$wplr->log( "There was unwanted activity during the Photo Engine process (probably generated by another plugin). Request: " . $_SERVER['REQUEST_URI'] . ". The output which was caught will follow.\r\n" . $content, true );
+			}
+			if ( !ob_end_clean() )
+				$wplr->log( "[OB] CLEAN FAILED" );
+			$wplr->log( "[OB] END (OB level is now " . ob_get_level() . ")" );
+			if ( ob_get_level() > 0 ) {
+				while ( @ob_end_clean() ) {}
+				$wplr->log( "[OB] ALL END" );
+			}
+		}
+		$this->running = false;
+		wp_send_json( $this->result, 200 );
+		exit;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see Meow_WPLR_Sync_API::sync()
+	 */
+	function sync( $args ) {
+		global $wplr;
+		if ( !$_FILES || !isset( $_FILES['file'] ) ) {
+			$wplr->log( 'Parameter missing.' );
+			return $this->response( null, false, 'Parameter missing.' );
+		}
+		$lrinfo = new Meow_WPLR_Sync_LRInfo();
+		$lrinfo->lr_id = $args["id"];
+		$lrinfo->lr_file = $args["file"];
+		$lrinfo->lr_title = $args["title"];
+		$lrinfo->lr_caption = $args["caption"];
+		$lrinfo->lr_desc = $args["desc"];
+		$lrinfo->lr_alt_text = $args["altText"];
+		$lrinfo->sync_title = $args["syncTitle"];
+		$lrinfo->sync_caption = $args["syncCaption"];
+		$lrinfo->sync_desc = $args["syncDesc"];
+		$lrinfo->sync_alt_text = $args["syncAltText"];
+		$lrinfo->tags = json_decode( stripslashes( $args["tags"] ), true );
+		$file = $_FILES['file']['tmp_name'];
+
+		if ( !isset( $args["wp_col_id"] ) || $args["wp_col_id"] == null )
+			$args["wp_col_id"] = -1;
+		if ( !$sync = $wplr->sync_media( $lrinfo, $file, $args["wp_col_id"], $this->user->ID ) ) {
+			return $this->response( null, false, $wplr->get_error() );
+		}
+		return $this->response($sync);
+	}
+
+	function presync( $args ) {
+		global $wplr;
+		if ( defined ('HHVM_VERSION' ) ) {
+			$max_execution_time = ini_get( 'max_execution_time' ) ? (int)ini_get( 'max_execution_time' ) : 30;
+			$post_max_size = ini_get( 'post_max_size' ) ? (int)$wplr->parse_ini_size( ini_get( 'post_max_size' ) ) : (int)ini_get( 'hhvm.server.max_post_size' );
+			$upload_max_filesize = ini_get( 'upload_max_filesize' ) ? (int)$wplr->parse_ini_size( ini_get( 'upload_max_filesize' ) ) : (int)ini_get( 'hhvm.server.upload.upload_max_file_size' );
+		}
+		else {
+			$max_execution_time = (int)ini_get( 'max_execution_time' );
+			$post_max_size = (int)$wplr->parse_ini_size( ini_get( 'post_max_size' ) );
+			$upload_max_filesize = (int)$wplr->parse_ini_size( ini_get( 'upload_max_filesize' ) );
+		}
+		$max = min( $post_max_size, $upload_max_filesize );
+		$presync = array(
+			'max_execution_time' => $max_execution_time > 0 ? $max_execution_time : 666,
+			'post_max_size' => $post_max_size,
+			'upload_max_filesize' => $upload_max_filesize > 0 ? $upload_max_filesize : 66600000,
+			'max_size' => $max > 0 ? $max : 66600000
+		);
+		return $this->response( $presync );
+	}
+
+	// Order collection
+	function order_collection( $args ) {
+		global $wplr;
+		$remoteId = property_exists( $args, 'remoteId' ) ? $args->remoteId : null;
+		$lrIds = property_exists( $args, 'lrIds' ) ? $args->lrIds : null;
+		$order = property_exists( $args, 'order' ) ? $args->order : null;
+		if ( empty( $remoteId ) )
+			return $this->response( true );
+
+		if ( empty( $lrIds ) ) {
+			$res = $wplr->order_collection_by( $remoteId, $order );
+			return $this->response( $res );
+		}
+		else {
+			$res = $wplr->order_collection( $remoteId, $lrIds );
+			return $this->response( $res );
+		}
+	}
+
+	// Sync file
+	function sync_collection( $args ) {
+		global $wplr;
+		$hierarchy = $args->hierarchy;
+		if ( !$list = $wplr->sync_collection( $hierarchy ) ) {
+			return $this->response( null, false, $this->error );
+		}
+		return $this->response( $list );
+	}
+
+	// Delete collection
+	function delete_collection( $args ) {
+		global $wplr;
+		$res = false;
+		if ( property_exists( $args, 'remoteId' ) )
+			$res = $wplr->delete_collection( $args->remoteId );
+		return $this->response( $res );
+	}
+
+	// Delete file
+	function delete( $args ) {
+		global $wplr;
+		$collectionId = -1;
+		if ( property_exists( $args, 'collection_id' ) )
+			$collectionId = $args->collection_id;
+		$list = $wplr->delete_media( $args->lr_id, $collectionId );
+		return $this->response( $list );
+	}
+
+	// Get the User
+	function userinfo( $args ) {
+		return $this->response( $this->user->data );
+	}
+
+	/*******************************************************************
+	 * TOTAL SYNCHRONIZATION MODULE
+	 ******************************************************************/
+
+	// Get WP IDs for a given LR ID
+	function list_wpids( $args ) {
+		global $wplr;
+		$res = $wplr->list_wpids( $args->lr_id );
+		return $this->response( $res );
+	}
+
+	// Unlink
+	function unlink( $args ) {
+		global $wplr;
+		$res = $wplr->unlink_media( $args->lr_id, $args->wp_id );
+		return $this->response( $res );
+	}
+
+	// Get LinkInfo for the Media ID
+	function link( $args ) {
+		global $wplr;
+		$res = $wplr->link_media( $args->lr_id, $args->wp_id );
+		return $this->response( $res );
+	}
+
+	// Get LinkInfo for the upload
+	function linkinfo_upload( $args ) {
+		global $wplr;
+		$file = $wplr->b64_to_file( $args->file );
+		$linkinfo = $wplr->linkinfo_upload( $file, null );
+		return $this->response( $linkinfo );
+	}
+
+	// Get LinkInfo for the Media ID
+	function linkinfo( $args ) {
+		global $wplr;
+		$linkinfo = $wplr->linkinfo_media( $args->wp_id );
+		return $this->response( $linkinfo );
+	}
+
+	// List files (the Media IDs) that are not linked
+	function list_unlinks( $args ) {
+		global $wplr;
+		$list = $wplr->list_unlinks();
+		return $this->response( $list );
+	}
+
+	// List synced files
+	function list_sync_media( $args ) {
+		global $wplr;
+		$list = $wplr->list_sync_media();
+		return $this->response( $list );
+	}
+
+}
+
+?>

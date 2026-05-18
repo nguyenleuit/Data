@@ -1,0 +1,4 @@
+x-target-base: &target-base
+  networks:
+    - target_network
+  restart: unless-stopped

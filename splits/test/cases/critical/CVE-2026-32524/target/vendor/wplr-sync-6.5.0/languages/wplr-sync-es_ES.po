@@ -1,0 +1,886 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Photo Engine\n"
+"POT-Creation-Date: 2017-10-04 09:12+0200\n"
+"PO-Revision-Date: 2017-10-04 09:45+0200\n"
+"Last-Translator: Jordy Meow <inscr@meow.fr>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_attr_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: common/admin.php:179 common/admin.php:180
+msgid "Dashboard"
+msgstr "Escritorio"
+
+#: common/admin.php:199
+msgid "<label>Hide</label><br /><small>Doesn't display the ads.</small>"
+msgstr "<label>Ocultar</label><br /><small>No muestra anuncios.</small>"
+
+#: common/admin.php:207
+msgid ""
+"<label>Hide <b>Meow Apps</b> Menu</label><br /><small>Hide Meow Apps menu "
+"and all its components, for a nicer an faster WordPress admin UI. An option "
+"will be added in Settings > General to display it again.</small>"
+msgstr ""
+"<label>Oculta el menú de  <b>Meow Apps</b></label><br /><small>Esconde el "
+"menú de Meow Apps y todos sus componentes, para tener una interfaz de "
+"administrador WordPress más sencilla y rápida. Se añadirá una opción a "
+"Configuración > General para mostrarlo de nuevo.</small>"
+
+#: common/admin.php:315
+msgid ""
+"Meow Apps is run by Jordy Meow, a photographer and software developer living "
+"in Japan (and taking <a target=\"_blank\" href=\"http://offbeatjapan.org\">a "
+"lot of photos</a>). Meow Apps is a suite of plugins focusing on photography, "
+"imaging, optimization and it teams up with the best players in the community "
+"(other themes and plugins developers). For more information, please check <a "
+"href=\"http://meowapps.com\" target=\"_blank\">Meow Apps</a>."
+msgstr ""
+"Meow Apps es una aplicación de <a href=“http://jordymeow.com”>Jordy Meow</"
+"a>, fotógrafo y desarrollador de software que establecido en Japón (y que "
+"toma <a target=“_blank” href=“http://offbeatjapan.org”>muchas fotos</a>). "
+"Meow Apps es una suite de plugins dedicado a hacer la vida de los fotógrafos "
+"con web fácil y atractiva. Meow Apps también colabora con los mejores "
+"participantes de la comunidad (desarrolladores de otros plugins o "
+"plantillas). Para más información, por favor visita <a href=“http://meowapps."
+"com” target=“_blank”>Meow Apps</a>."
+
+#: extensions/collections.php:55
+msgid "Add New Collection"
+msgstr "Añadir nueva colección"
+
+#: extensions/collections.php:56
+msgid "New Collection"
+msgstr "Nueva Colección"
+
+#: extensions/collections.php:57
+msgid "Edit Collection"
+msgstr "Editar Colección"
+
+#: extensions/collections.php:58
+msgid "View Collection"
+msgstr "Ver Colección"
+
+#: extensions/collections.php:59
+msgid "All Collections"
+msgstr "Todas las Colecciones"
+
+#: extensions/collections.php:60
+msgid "Search Collections"
+msgstr "Buscar Colecciones"
+
+#: extensions/collections.php:61
+msgid "Parent Collections:"
+msgstr "Colecciones Padre:"
+
+#: extensions/collections.php:62
+msgid "No collections found."
+msgstr "No se encontraron colecciones."
+
+#: extensions/collections.php:63
+msgid "No collections found in Trash."
+msgstr "No se encontraron colecciones en la Papelera."
+
+#: extensions/post_types.php:129
+msgid "Post Type"
+msgstr "Tipo de Post"
+
+#: extensions/post_types.php:132
+msgid "Status"
+msgstr "Estado"
+
+#: extensions/post_types.php:135 extensions/post_types.php:161
+#: extensions/post_types.php:171
+msgid "Reuse"
+msgstr "Reutilizar"
+
+#: extensions/post_types.php:138
+msgid "Hierarchical"
+msgstr "Jerárquico"
+
+#: extensions/post_types.php:141
+msgid "Mode"
+msgstr "Modo"
+
+#: extensions/post_types.php:158 extensions/post_types.php:168
+msgid "Taxonomy"
+msgstr "Taxonomía"
+
+#: extensions/post_types.php:260
+#, php-format
+msgid "Taxonomy (for folders) was reset since '%s' could not be found in '%s'."
+msgstr ""
+"La taxonomía (para carpetas) fue reiniciada desde ‘%s’ no se pudo encontrar "
+"en ‘%s’."
+
+#: extensions/post_types.php:276
+#, php-format
+msgid "Taxonomy (for tags) was reset since '%s' could not be found in '%s'."
+msgstr ""
+"La taxonomía (para etiquetas) fue reiniciada desde ‘%s’ no se pudo encontrar "
+"en ‘%s’."
+
+#: extensions/post_types.php:288
+msgid "A Post Meta is required by the current mode."
+msgstr "Una Post Meta es requerida para el actual modo."
+
+#: extensions/post_types.php:294
+msgid "Folder (LR) &#x2192; Taxonomy (WP)"
+msgstr "Carpeta (LR) &#x2192; Taxonomia (WP)"
+
+#: extensions/post_types.php:298
+msgid "Keywords (LR) &#x2192; Taxonomy (WP)"
+msgstr "Palabras clave (LR) &#x2192; Taxonomia (WP)"
+
+#: extensions/post_types.php:309
+msgid ""
+"Your collections in LR will be synchronized with this post type.<br /"
+"><b>Please click \"Save Changes\" every time you modify the \"Post Type\"</"
+"b> so that the taxonomies can be properly reloaded."
+msgstr ""
+"Tus colecciones en LR se sincronizarán con este tipo de post.<br /><b>Por "
+"favor haz click en “Guardar Cambios” cada vez que modifiques el “Tipo de "
+"post”</b> para que las taxonomías puedan recargarse correctamente."
+
+#: extensions/post_types.php:323
+msgid "Status of your post-type when it is created."
+msgstr "Estado de tu tipo de post cuando está creado."
+
+#: extensions/post_types.php:337
+msgid ""
+"By default, it should be \"WP Gallery\". In that case, a standard WP Gallery "
+"containing the images will be created and maintained by the extension. If "
+"you pick a mode related to \"Post Meta\", click on \"Save Changes\", and "
+"type the name of the Post Meta. This meta will contain an array of Media IDs."
+msgstr ""
+"Por defecto debería ser “Galería WP”. En ese caso, se creará una galería "
+"standard de WP y se mantendrá por la extensión. Si eliges el modo “Post "
+"Meta” haz click en “Cambiar Cambios”, e introduce el nombre del Post Meta. "
+"Este meta contendrá un array de Media IDs."
+
+#: extensions/post_types.php:349
+msgid ""
+"The current chosen mode require the key of the <b>Post Meta</b> you would "
+"like the extension to update."
+msgstr ""
+"El modo elegido requiere la clave de <b>Post Meta</b> que te gustaría que "
+"actualizar la extensión."
+
+#: extensions/post_types.php:363
+#, php-format
+msgid ""
+"If your post type is hierarchical, with this option the hierarchy of "
+"collections will be made using the Post Type \"%s\".<br />Usage of "
+"taxonomies will be disabled."
+msgstr ""
+"Si tu tipo de post es jerárquico, con esta opción la jerarquía de las "
+"colecciones se realizará utilizando el Tipo de Post “%s”.<br />El uso de "
+"taxonomías se deshabilitará."
+
+#: extensions/post_types.php:377
+msgid ""
+"If the name of your collection (LR) already matches the name of an existing "
+"post type, it will become associated with it instead of creating a new one."
+msgstr ""
+"Si el nombre de tu colección (LR) coincide con el nombre de un tipo de post "
+"ya existente, se asociará al mismo en lugar de crear uno nuevo."
+
+#: extensions/post_types.php:404
+msgid ""
+"If the name of your folder (LR) already matches the name of an existing term "
+"(of your taxonomy), it will become associated with it instead of creating a "
+"new one."
+msgstr ""
+"Si el nombre de tu carpeta (LR) coincide con el nombre de un término (de tu "
+"taxonomía) ya existente, se asociará al mismo en lugar de crear uno nuevo."
+
+#: extensions/post_types.php:421
+msgid ""
+"Your keywords (LR) will be synchronized with the terms in this taxonomy."
+msgstr ""
+"Tus palabras clave (LR) se sincronizarán con los términos de esta taxonomía."
+
+#: extensions/post_types.php:435
+msgid ""
+"If the name of your keyword (LR) already matches the name of an existing "
+"term (of your taxonomy), it will become associated with it instead of "
+"creating a new one."
+msgstr ""
+"Si el nombre de la palabra clave (LR) coincide con el nombre de un término "
+"(de tu taxonomía) ya existente, se asociará al mismo en lugar de crear uno "
+"nuevo."
+
+#: extensions/post_types.php:448
+msgid "There is a tutorial about this extension:"
+msgstr "Hay un tutorial sobre esta extensión:"
+
+#: extensions/post_types.php:454
+msgid "Collection (LR) → Post Type (WP)"
+msgstr "Colección (LR) → Tipo de post (WP)"
+
+#: extensions/post_types.php:470
+msgid "Folder (LR) → Taxonomy (WP)"
+msgstr "Carpeta (LR) → Taxonomía (WP)"
+
+#: extensions/post_types.php:481
+msgid "Keywords (LR) → Taxonomy (WP)"
+msgstr "Palabras clave (LR) → Taxonomía (WP)"
+
+#: extensions/real_media_library.php:72
+msgid ""
+"The plugin <a href=\"https://codecanyon.net/item/wordpress-real-media-"
+"library-media-categories-folders/13155134?ref=TigrouMeow\" target=\"_blank"
+"\"><b>Real Media Library</b></a> is not active (maybe not installed neither) "
+"or the version of Real Media Library is < 2.8.3 (please update). However, "
+"you activated the Photo Engine extension for it. Until the plugin is "
+"installed, the extension will not be loaded."
+msgstr ""
+"El plugin <a href=“https://codecanyon.net/item/wordpress-real-media-library-"
+"media-categories-folders/13155134?ref=TigrouMeow” target=“_blank”><b>Real "
+"Media Library</b></a> no está activo (igual tampoco está instalado) o la "
+"versión de Real Media Library es < 2.8.3 (actualiza, por favor). Sin "
+"embargo, activaste su extensión de Photo Engine. Hasta que el plugin no se "
+"instale, la extensión no se cargará."
+
+#: lrsync_admin.php:45
+msgid ""
+"Photo Engine will not work properly because you are using W3 Total Cache with "
+"the Database Cached enabled. For some reason, this option breaks the syncing "
+"process."
+msgstr ""
+"Photo Engine no funcionará correctamente porque estás utilizando el plugin W3 "
+"Total Cache con el caché de base de datos activada. Por algún motivo, esta "
+"opción interrumpe el proceso de sincronización."
+
+#: lrsync_admin.php:55
+msgid ""
+"Photo Engine will not work properly if your permalinks are set up on \"Plain"
+"\". Please pick a dynamic structure for your permalinks (Settings > "
+"Permalinks)."
+msgstr ""
+"Photo Engine no funcionará correctamente si tus enlaces permanentes están "
+"configurados como “Simple”. Por favor, elige una estructura dinámica para "
+"tus enlaces permanentes (Ajustes > Enlaces permanentes)."
+
+#: lrsync_admin.php:81 lrsync_admin.php:164
+msgid "Settings"
+msgstr "Configuración"
+
+#: lrsync_admin.php:85
+msgid "Meta Date"
+msgstr "Meta Date"
+
+#: lrsync_admin.php:86
+msgid "Use Capture Date"
+msgstr "Utilizar la fecha de captura de la foto"
+
+#: lrsync_admin.php:88
+msgid "Enable Keywords"
+msgstr "Habilitar las palabras clave"
+
+#: lrsync_admin.php:91
+msgid "Create the Keywords taxonomy"
+msgstr "Crear la taxonomía de las palabras clave"
+
+#: lrsync_admin.php:92
+msgid "Sync Keywords"
+msgstr "Sincronizar las palabras clave"
+
+#: lrsync_admin.php:93
+msgid "Sync your keywords in LR with a WP taxonomy."
+msgstr "Sincronizar tus palabras clave en LR con la taxonomía de WP."
+
+#: lrsync_admin.php:96
+msgid "Show Folders & Collections in Media Library"
+msgstr "Mostrar Carpetas y Colecciones en la Biblioteca de medios"
+
+#: lrsync_admin.php:100
+msgid "Skip Sanitization"
+msgstr "Saltar la Sanitización"
+
+#: lrsync_admin.php:103 lrsync_admin.php:138 lrsync_admin.php:139
+#: lrsync_admin.php:1082
+msgid "Debugging Tools"
+msgstr "Herramientas de debug"
+
+#: lrsync_admin.php:106
+msgid "Advanced Logs"
+msgstr "Logs avanzados"
+
+#: lrsync_admin.php:110
+msgid "JSON API<br />(Mobile Apps)"
+msgstr "JSON API<br />(Aplicaciones móviles)"
+
+#: lrsync_admin.php:125 lrsync_admin.php:126 lrsync_admin.php:740
+msgid "Collections & Keywords"
+msgstr "Colecciones y Palabras Clave"
+
+#: lrsync_admin.php:131 lrsync_admin.php:132 lrsync_admin.php:858
+msgid "Media Tools"
+msgstr "Herramientas de medios"
+
+#: lrsync_admin.php:145 lrsync_admin.php:146 lrsync_admin.php:200
+#: lrsync_admin.php:213
+msgid "Extensions"
+msgstr "Extensiones"
+
+#: lrsync_admin.php:226 lrsync_admin.php:1399
+msgid "Actions"
+msgstr "Acciones"
+
+#: lrsync_admin.php:252
+msgid "No extensions have been loaded (and that is fine)."
+msgstr "No se han cargado extensiones (y no es un problema)."
+
+#: lrsync_admin.php:255
+#, php-format
+msgid "The extension for <b>%s</b> is loaded."
+msgstr "La extensión para <b>%s</b> se ha cargado."
+
+#: lrsync_admin.php:260
+#, php-format
+msgid "The extensions for <b>%s</b> are loaded."
+msgstr "Las extensiones para <b>%s</b> se han cargado."
+
+#: lrsync_admin.php:269
+msgid ""
+"The plugin synchronizes your collections and collection sets from Lightroom. "
+"They are stored in WordPress internally but not used nor displayed "
+"initially. Extensions are required to use those collections. You can learn "
+"more about it here: <a target=\"_blank\" href=\"http://meowapps.com/wplr-"
+"sync/wplr-extensions/\">WP/LR Extensions</a>."
+msgstr ""
+"El plugin sincroniza tus colecciones y conjuntos de colecciones de "
+"Lightroom. Puedes aprender más sobre ello aquí: <a target=“_blank” "
+"href=“http://meowapps.com/wplr-sync/wplr-extensions/“>WP/LR Extensions</a>."
+
+#: lrsync_admin.php:560
+msgid "Resync with Extensions"
+msgstr "Resincroniza las Extensiones"
+
+#: lrsync_admin.php:562
+msgid "Reset with Extensions"
+msgstr "Reinicia las Extensiones"
+
+#: lrsync_admin.php:564
+msgid "Clean DB"
+msgstr "Limpia la base de datos"
+
+#: lrsync_admin.php:576
+msgid ""
+"<span class=\"description\"><b>Resync with Extensions</b> will request the "
+"extensions to re-create the folders/collections/keywords structure.</"
+"label><br /><br /><b>Reset with Extensions</b> will request the extensions "
+"to cancel/remove their usage of the folders/collections/keywords."
+msgstr ""
+"<span class=“description”><b>Resincroniza las Extensiones</b> pedirá a las "
+"extensiones que vuelvan a crear la estructura de carpetas/colecciones/"
+"palabras clave.</label><br /><br /><b>Reinicia las Extensiones</b> pedirá a "
+"las extensiones que cancelen/eliminen el uso de carpetas/colecciones/"
+"palabras clave."
+
+#: lrsync_admin.php:587
+msgid "The default used to be XML/RPC but let's try to switch to HTTP API."
+msgstr ""
+"XML/RPC era la opción por defecto pero vamos a probar a cambiar a la API de "
+"HTTP."
+
+#: lrsync_admin.php:597
+msgid ""
+"The date of the Media will not be the time when it was added to the Media "
+"Library but the the time when the photo was taken."
+msgstr ""
+"La fecha de los Medios no será el momento en el que se añadió a la "
+"Biblioteca de Medios sino el momento en el que se tomó la foto."
+
+#: lrsync_admin.php:599
+msgid "EXIF functions are enabled on your server."
+msgstr "Las funciones EXIF está habilitadas en tu servidor."
+
+#: lrsync_admin.php:600
+msgid "EXIF functions are <b>NOT</b> enabled on your server."
+msgstr "La funciones EXIF <b>NO</b> están habilitadas en tu servidor."
+
+#: lrsync_admin.php:610
+msgid ""
+"The Keywords taxonomy (<b>attachment_keyword</b>) will be added to your "
+"Media Library. It works the same way as the tags already available for your "
+"posts."
+msgstr ""
+"La taxonomía de palabras clave (<b>attachment_keyword</b>) se añadirá a tu "
+"Biblioteca de Medios. Funciona de la misma manera que las etiquetas "
+"disponibles para tus posts."
+
+#: lrsync_admin.php:624
+msgid ""
+"Synchronize your LR keywords with a taxonomy available in your Media Library "
+"(through your theme or another plugin). If the above option is checked, the "
+"Keywords (<b>attachment_keyword</b>) will be available."
+msgstr ""
+"Sincroniza tus palabras clave de LR con una taxonomía disponible en tu "
+"Biblioteca de Medios (a través de tu plantilla u otro plugin). Si la opción "
+"de arriba está seleccionada, las palabras clave (<b>attachment_keyword</b>) "
+"estarán disponibles."
+
+#: lrsync_admin.php:633
+msgid ""
+"Add a filter in the Media Library to allows selection of a particular "
+"collection (also display the hierarchy of folders)."
+msgstr ""
+"Añade un filtro en la Biblioteca de Medios para permitir la selección de una "
+"colección en particular (también muestra la jerarquía de las carpetas)."
+
+#: lrsync_admin.php:642
+msgid ""
+"By default, the accents are removed from the filenames, spaces are turned "
+"into hyphens and all is converted to small caps (to avoid issues on many "
+"installs). Enable this to avoid your filenames to be changed from what your "
+"picked in LR."
+msgstr ""
+"Por defecto, las tildes se eliminarán de los nombres de fichero, los "
+"espacios se convertirán a guiones bajos(_) y todo se convierte a letras "
+"minúsculas (para evitar problemas con muchas instalaciones). Activa esta "
+"opción para evitar que tus nombres cambien sobre los que elegiste en "
+"Lightroom."
+
+#: lrsync_admin.php:651
+msgid ""
+"Add a Debugging Tools menu in Photo Engine. It will also display the WP/LR "
+"Sync extensions and related menus that might have been hidden by your theme. "
+"For advanced users only."
+msgstr ""
+"Añade un menú de herramientas de debug en Photo Engine. También mostrará las "
+"extensiones y menús relacionados con Photo Engine que han podido ser ocultadas "
+"por tu plantilla. Sólo para usuarios avanzados."
+
+#: lrsync_admin.php:665
+msgid "Create an internal log file. For advanced users only."
+msgstr "Crea un registro interno (log file). Sólo para usuarios avanzados."
+
+#: lrsync_admin.php:667
+#, php-format
+msgid ""
+"<br />The <a target=\"_blank\" href=\"%s/wplr-sync.log\">log file</a> is "
+"available. You can also <a href=\"?page=wplr-main-menu&clearlogs=true"
+"\">clear</a> it."
+msgstr ""
+"<br />El <a target=“_blank” href=“%s/wplr-sync.log”>log file</a> está "
+"disponible. También puedes <a href=“?page=wplr-main-"
+"menu&clearlogs=true”>vaciarlo</a>."
+
+#: lrsync_admin.php:678
+msgid ""
+"Add functions in the WordPress API that can be reach by external apps "
+"(mobile apps for instance). A QR Code will be displayed in the admin and "
+"need to be used for authentification."
+msgstr ""
+"Añade funciones en la API de WordPress que pueden ser accesibles por "
+"aplicaciones externas (apps de móvil por ejemplo). Se mostrará un código QR "
+"en la administración y será necesario utilizarlo para la autenticación."
+
+#: lrsync_admin.php:733
+msgid ""
+"You can use new attributes with the standard WP Gallery shortcode. <i>Hover "
+"over the collections, folders and tags.</i>"
+msgstr ""
+"Puedes usar nuevos atributos con el shortcode de la Galería de WordPress. "
+"<i>Desliza el puntero sobre las colecciones, carpetas y etiquetas.</i>"
+
+#: lrsync_admin.php:736
+msgid ""
+"To make your galleries better, the <b><a target=\"_blank\" href=\"https://"
+"wordpress.org/plugins/meow-gallery/\">Meow Gallery</a></b> plugin is "
+"recommended. It works naturally with the standard WP Gallery, adds features "
+"to it and supports many kinds of layouts :)"
+msgstr ""
+"Para hacer las galerías mejor, se recomienda el plugin <b><a target=“_blank” "
+"href=“https://wordpress.org/plugins/meow-gallery/“>Meow Gallery</a></b>. "
+"Funciona de forma natural con la Galería standard de WordPress, añade nuevas "
+"funcionalidades y ofrece distintos tipos de layouts :)"
+
+#: lrsync_admin.php:743
+msgid ""
+"This is the hierarchy of folders, collections and tags stored by Photo Engine "
+"internally. If you wish this hierarchy to be synchronized with your theme "
+"directly, please learn about the <a target=\"_blank\" href=\"https://"
+"meowapps.com/wplr-sync/wplr-extensions/\">Photo Engine Extensions</a>. You can "
+"also try the <a target=\"_blank\" href=\"https://wordpress.org/plugins/meow-"
+"gallery/\">Meow Gallery</a></b> plugin that makes use of all this natively."
+msgstr ""
+"Esta es la jerarquía de carpetas, colecciones y etiquetas que se almacenan "
+"internamente por Photo Engine. Si quieres que esta jerarquía se sincronice con "
+"tu tema directamente, puedes aprender sobre ello en <a target=“_blank” "
+"href=“https://meowapps.com/wplr-sync/wplr-extensions/“>Photo Engine "
+"Extensions</a>. También puedes probar el plugin <a target=“_blank” "
+"href=“https://wordpress.org/plugins/meow-gallery/“>Meow Gallery</a></b> que "
+"hace todo esto de forma nativa."
+
+#: lrsync_admin.php:749 lrsync_admin.php:906
+msgid "Folders & Collections"
+msgstr "Carpetas y Colecciones"
+
+#: lrsync_admin.php:754 lrsync_admin.php:905
+msgid "Keywords (Tags)"
+msgstr "Palabras clave (etiquetas)"
+
+#: lrsync_admin.php:860
+msgid ""
+"This screen will help you to link your unlinked photos between WordPress and "
+"Lightroom. <b>Don't forget that if you link a photo from here you also need "
+"to also add it manually to the WP/LR Service in Lightroom.</b>\n"
+"\t\tLast but not least, be careful with the in 'Duplicated Links', they are "
+"<b>immediate</b> and the 'Delete' is <b>unrecoverable</b>."
+msgstr ""
+"Esta pantalla te ayudará a enlazar tus fotografías que aún no están "
+"enlazadas entre WordPress y Lightroom. <b>No olvides que si enlazar una foto "
+"aquí también tendrás que hacerlo manualmente en el servicio de Photo Engine en "
+"Lightroom.</b>\n"
+"\t\tPor último, ten cuidado con los ‘Links Duplicados’, son <b>inmediatos</"
+"b> y el ‘Borrado’ es <b>irrecuperable</b>."
+
+#: lrsync_admin.php:863
+msgid "Unlinked Photos"
+msgstr "Fotografías sin enlazar"
+
+#: lrsync_admin.php:864
+msgid "Duplicated Links"
+msgstr "Enlaces duplicados"
+
+#: lrsync_admin.php:865
+msgid "Ignored Photos"
+msgstr "Fotos ignoradas"
+
+#: lrsync_admin.php:872
+msgid "There are no unlinked photos."
+msgstr "No hay fotos sin enlazar."
+
+#: lrsync_admin.php:874
+msgid "There are no duplicated links."
+msgstr "No hay enlaces duplicados."
+
+#: lrsync_admin.php:876
+msgid "There are no ignored images."
+msgstr "No hay imágenes ignoradas."
+
+#: lrsync_admin.php:921 lrsync_admin.php:927
+msgid "(delete)"
+msgstr "(eliminar)"
+
+#: lrsync_admin.php:999
+msgid "Unlock <b>delete</b>"
+msgstr "Permitir <b>el borrado</b>"
+
+#: lrsync_admin.php:1074
+msgid "You do not have sufficient permissions to access this page."
+msgstr "No tienes suficientes permisos para acceder a esta página."
+
+#: lrsync_admin.php:1099
+msgid "The database was reset."
+msgstr "La base de datos se reinició."
+
+#: lrsync_admin.php:1114
+msgid "Link successful."
+msgstr "Enlace exitoso."
+
+#: lrsync_admin.php:1131
+msgid "Link info retrieved."
+msgstr "Información del enlace recuperado."
+
+#: lrsync_admin.php:1152
+#, php-format
+msgid "Lr ID %d was synchronized with the attachment."
+msgstr "La Lr ID %d se ha sincronizado con el adjunto."
+
+#: lrsync_admin.php:1162
+#, php-format
+msgid "Media ID %d was unlinked."
+msgstr "La Media ID %d de desenlazó."
+
+#: lrsync_admin.php:1171
+#, php-format
+msgid "Media ID %d was removed."
+msgstr "La Media ID %d se eliminó."
+
+#: lrsync_admin.php:1187
+msgid "Display"
+msgstr "Mostrar"
+
+#: lrsync_admin.php:1218
+msgid "Unlinked Media"
+msgstr "Archivos multimedia sin enlazar"
+
+#: lrsync_admin.php:1224
+msgid "Linked Media"
+msgstr "Archivos multimedia enlazados"
+
+#: lrsync_admin.php:1235
+msgid "Duplicates"
+msgstr "Duplicados"
+
+#: lrsync_admin.php:1248
+msgid "API Response"
+msgstr "Respuesta de la API"
+
+#: lrsync_admin.php:1271
+#, php-format
+msgid "%d linked files out of %d media files."
+msgstr "%d archivos enlazados de %d archivos multimedia."
+
+#: lrsync_admin.php:1277
+msgid "Link Info"
+msgstr "Enlace de inforamción"
+
+#: lrsync_admin.php:1278
+msgid "Link info for either a WP ID <b>or</b> the Uploaded File."
+msgstr "Enlace de información para WP ID <b>o</b> el archivo subido."
+
+#: lrsync_admin.php:1297 lrsync_core.php:1289
+msgid "Link"
+msgstr "Enlace"
+
+#: lrsync_admin.php:1298
+msgid "Will link the WP Media ID to the Lr ID."
+msgstr "Enlazará el WP Media con el Lr ID."
+
+#: lrsync_admin.php:1318
+msgid "Unlink"
+msgstr "Desenlazar"
+
+#: lrsync_admin.php:1319
+msgid "Will unlink the media."
+msgstr "Desenlazará el archivo multimedia."
+
+#: lrsync_admin.php:1338
+msgid "Sync"
+msgstr "Sincronizar"
+
+#: lrsync_admin.php:1339
+msgid "Will create the entry if doesn't exist, will update it if exists."
+msgstr "Creará una entrada si no existe, la actualizará si ya existe."
+
+#: lrsync_admin.php:1383
+msgid "Remove"
+msgstr "Eliminar"
+
+#: lrsync_admin.php:1384
+msgid "Will remove the media."
+msgstr "Eliminar el archivo multimedia."
+
+#: lrsync_admin.php:1401
+msgid "Be careful. Those buttons are dangerous."
+msgstr "Ten cuidado. Esos botones son peligrosos."
+
+#: lrsync_admin.php:1405
+msgid "Reset Photo Engine DB"
+msgstr "Reinicia la base de datos de Photo Engine"
+
+#: lrsync_api.php:100
+msgid "Either XML/RPC or REST should be used."
+msgstr "Se debe utilizar XML/RPC o REST."
+
+#: lrsync_core.php:134
+msgid "Unknown error."
+msgstr "Error desconocido."
+
+#: lrsync_core.php:436
+msgid "The attachment could not be removed."
+msgstr "El fichero adjunto no se pudo eliminar."
+
+#: lrsync_core.php:476
+msgid "There is no link for this media."
+msgstr "No hay enlace para este archivo multimedia."
+
+#: lrsync_core.php:485
+msgid "The arguments lr_id and wp_id are required."
+msgstr "Se requieres los datos lr_id y wp_id."
+
+#: lrsync_core.php:489 lrsync_core.php:967
+msgid "Attachment "
+msgstr "Fichero adjunto "
+
+#: lrsync_core.php:738
+msgid "Could not handle the file on the server-side."
+msgstr "No se pudo entregar el fichero al servidor."
+
+#: lrsync_core.php:830
+msgid "Could not copy the file."
+msgstr "No se puedo copiar el archivo."
+
+#: lrsync_core.php:842
+msgid "Could not insert attachment for "
+msgstr "No se pudo insertar el fichero adjunto para "
+
+#: lrsync_core.php:883
+msgid "The file was not uploaded."
+msgstr "El fichero no se subió."
+
+#: lrsync_core.php:913
+msgid "The information about the media could not be retrieved."
+msgstr "No se pudo conseguir la información sobre el fichero."
+
+#: lrsync_core.php:1075
+msgid "Could not add media "
+msgstr "No se puedo añadir el archivo multimedia "
+
+#: lrsync_core.php:1111
+msgid "Could not create the folder/collection called "
+msgstr "No se pudo crear la carpeta/colección llamada "
+
+#: lrsync_core.php:1253 lrsync_core.php:1285
+msgid "Unknown"
+msgstr "Desconocido"
+
+#: lrsync_core.php:1256 lrsync_core.php:1294
+msgid "Enabled"
+msgstr "Habilitado"
+
+#: lrsync_core.php:1259 lrsync_core.php:1297
+msgid "Never synced."
+msgstr "Nunca se ha sincronizado."
+
+#: lrsync_core.php:1263 lrsync_core.php:1268 lrsync_core.php:1301
+#: lrsync_core.php:1306
+#, php-format
+msgid "Synced at %s"
+msgstr "Sincronizado al %s"
+
+#: lrsync_core.php:1313
+msgid "Ignored"
+msgstr "Ignorado"
+
+#: lrsync_core.php:1316
+msgid "(undo)"
+msgstr "(deshacer)"
+
+#: lrsync_keywords.php:15
+msgid "Search Keywords"
+msgstr "Buscar Palabras Clave"
+
+#: lrsync_keywords.php:16
+msgid "All Keywords"
+msgstr "Todas las Palabras Clave"
+
+#: lrsync_keywords.php:17
+msgid "Parent Keyword"
+msgstr "Palabras Clave padre"
+
+#: lrsync_keywords.php:18
+msgid "Parent Keyword:"
+msgstr "Palabras Clave padre:"
+
+#: lrsync_keywords.php:19
+msgid "Edit Keyword"
+msgstr "Editar Palabra Clave"
+
+#: lrsync_keywords.php:20
+msgid "Update Keyword"
+msgstr "Actualizar Palabra Clave"
+
+#: lrsync_keywords.php:21
+msgid "Add New Keyword"
+msgstr "Añadir nueva Palabra Clave"
+
+#: lrsync_keywords.php:22
+msgid "New Keyword Name"
+msgstr "Nuevo nombre de Palabra Clave"
+
+#: lrsync_keywords.php:23
+msgid "Keywords"
+msgstr "Palabras clave"
+
+#: lrsync_rest.php:100 lrsync_rpc.php:33
+msgid "Incorrect username or password."
+msgstr "Usuario o contraseña incorrecta."
+
+#: lrsync_rest.php:106 lrsync_rpc.php:38
+msgid "You do not have permission to upload files."
+msgstr "No tienes permiso para subir ficheros."
+
+#~ msgid "Doesn't display the ads."
+#~ msgstr "No muestra anuncios."
+
+#~ msgid "Serial Key"
+#~ msgstr "Número de serie"
+
+#~ msgid ""
+#~ "Insert your serial key above. If you don't have one yet, you can get one "
+#~ "<a target=\"_blank\" href=\"%s\">here.</a>"
+#~ msgstr ""
+#~ "Introduce tu número de serie arriba. Si aún no tienes uno, puedes "
+#~ "conseguirlo <a target=“_blank” href=“%s”>aquí.</a>"
+
+#~ msgid ""
+#~ "There was an error while validating the serial.<br />Please contact <a "
+#~ "target='_blank' href='https://meowapps.com/contact/'>Meow Apps</a> and "
+#~ "mention the following log: <br /><ul>"
+#~ msgstr ""
+#~ "Ocurrió un error a la hora de validar el número de licencia.<br />Por "
+#~ "favor contacta <a target=‘_blank’ href=‘https://meowapps.com/"
+#~ "contact/‘>Meow Apps</a> y menciona el siguiente log: <br /><ul>"
+
+#~ msgid "Your subscription is not active."
+#~ msgstr "Tu suscripción no está activa."
+
+#~ msgid "Too many URLs are linked to your subscription."
+#~ msgstr "Hay demasiadas URLs vinculadas a tu suscripción."
+
+#~ msgid "Bring synchronization from Lightroom to WordPress."
+#~ msgstr "Consigue sincronizar Lightroom y WordPress."
+
+#~ msgid "Lightbox with EXIF information nicely displayed."
+#~ msgstr "El lightbox con los datos EXIF se muestra de forma atractiva."
+
+#~ msgid "Simple gallery to make your photos look better (Masonry and others)."
+#~ msgstr ""
+#~ "Una galería sencilla para que tus fotografías luzcan más (Masonry y "
+#~ "otras)."
+
+#~ msgid "Add audio to your images."
+#~ msgstr "Añade audio a tus imágenes."
+
+#~ msgid "Nicer filenames and better SEO, automatically."
+#~ msgstr ""
+#~ "Consigue nombres de archivo más adecuados y mejor SEO de forma automática."
+
+#~ msgid "Detect the files you are not using to clean your system."
+#~ msgstr ""
+#~ "Detecta los archivos que no estás utilizando y los elimina de tu sistema."
+
+#~ msgid "Make your website perfect for retina devices."
+#~ msgstr "Haz tu página web perfecta para los dispositivos retina."
+
+#~ msgid ""
+#~ "Allows you to select a main category (or taxonomy) for nicer permalinks."
+#~ msgstr ""
+#~ "Te permite elegir la categoría (o taxonomía) principal para tener "
+#~ "permalinks más atractivos."
+
+#~ msgid "Display Error Log"
+#~ msgstr "Muestra el Log de errores"
+
+#~ msgid "Display PHP Info"
+#~ msgstr "Muestra la información de PHP"
+
+#~ msgid "Hierarchy"
+#~ msgstr "Jerarquía"
+
+#~ msgid ""
+#~ "This is stored internally. To replicate this in another plugin through an "
+#~ "extension, visit the Extensions menu."
+#~ msgstr ""
+#~ "Esto se guarda internamente. Para replicar esto en otro plugin a través "
+#~ "de una extensión, visita el menú de Extensiones."
+
+#~ msgid ""
+#~ "A maximum of 25 photos is displayed by collection here to avoid viewing "
+#~ "issues."
+#~ msgstr ""
+#~ "Se muestran un máximo de 25 fotografías por colección para evitar "
+#~ "problemas de visualización."

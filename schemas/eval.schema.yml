@@ -1,0 +1,17 @@
+type: object
+required:
+  - case_id
+  - sandbox
+  - evaluator
+  - scorer
+properties:
+  case_id:
+    type: string
+  sandbox:
+    type: object
+  evaluator:
+    type: object
+  scorer:
+    type: object
+  timeout_seconds:
+    type: integer

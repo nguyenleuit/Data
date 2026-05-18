@@ -1,0 +1,23 @@
+type: object
+required:
+  - case_id
+  - framework
+  - success
+  - score
+  - observation
+properties:
+  case_id:
+    type: string
+  framework:
+    type: string
+  success:
+    type: boolean
+  score:
+    type: number
+  observation:
+    type: object
+  oracle_classification:
+    type: string
+    enum: [success, failure, not_run, invalid, timeout]
+  transcript_path:
+    type: string

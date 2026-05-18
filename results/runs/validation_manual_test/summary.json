@@ -1,0 +1,255 @@
+{
+  "cases": [
+    {
+      "case_id": "CVE-2026-1324",
+      "errors": [],
+      "path": "splits/test/cases/critical/CVE-2026-1324",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-1324",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-21858",
+      "errors": [],
+      "path": "splits/test/cases/critical/CVE-2026-21858",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-21858",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-23837",
+      "errors": [],
+      "path": "splits/test/cases/critical/CVE-2026-23837",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-23837",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-24061",
+      "errors": [],
+      "path": "splits/test/cases/critical/CVE-2026-24061",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-24061",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-27944",
+      "errors": [],
+      "path": "splits/test/cases/critical/CVE-2026-27944",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-27944",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-29000",
+      "errors": [],
+      "path": "splits/test/cases/critical/CVE-2026-29000",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-29000",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-32482",
+      "errors": [],
+      "path": "splits/test/cases/critical/CVE-2026-32482",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-32482",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-32519",
+      "errors": [],
+      "path": "splits/test/cases/critical/CVE-2026-32519",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-32519",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-32524",
+      "errors": [],
+      "path": "splits/test/cases/critical/CVE-2026-32524",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-32524",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-32746",
+      "errors": [],
+      "path": "splits/test/cases/critical/CVE-2026-32746",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-32746",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-1580",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-1580",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-1580",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-1642",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-1642",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-1642",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-22265",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-22265",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-22265",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-22804",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-22804",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-22804",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-24512",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-24512",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-24512",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-25116",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-25116",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-25116",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-25361",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-25361",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-25361",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-25887",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-25887",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-25887",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-27734",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-27734",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-27734",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-27880",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-27880",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-27880",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-32538",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-32538",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-32538",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-32748",
+      "errors": [],
+      "path": "splits/test/cases/high/CVE-2026-32748",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-32748",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-1561",
+      "errors": [],
+      "path": "splits/test/cases/medium/CVE-2026-1561",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-1561",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-26073",
+      "errors": [],
+      "path": "splits/test/cases/medium/CVE-2026-26073",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-26073",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-26352",
+      "errors": [],
+      "path": "splits/test/cases/medium/CVE-2026-26352",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-26352",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-27855",
+      "errors": [],
+      "path": "splits/test/cases/medium/CVE-2026-27855",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-27855",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    },
+    {
+      "case_id": "CVE-2026-4907",
+      "errors": [],
+      "path": "splits/test/cases/medium/CVE-2026-4907",
+      "result_dir": "results/runs/validation_manual_test/CVE-2026-4907",
+      "score": 0.0,
+      "status": "dry-run",
+      "success": false
+    }
+  ],
+  "dry_run": true,
+  "failed": 0,
+  "framework": "manual",
+  "results_root": "/home/nguyencter/Research/Data/results/runs",
+  "run_id": "validation_manual_test",
+  "split": "test",
+  "succeeded": 27,
+  "total_cases": 27
+}

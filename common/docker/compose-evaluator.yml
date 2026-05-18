@@ -1,0 +1,12 @@
+services:
+  evaluator:
+    build: ../../common/evaluator
+    environment:
+      EVALUATOR_PORT: "9091"
+      EVALUATOR_STATE_DIR: /state
+    ports:
+      - 127.0.0.1:9091:9091
+    volumes:
+      - ./artifacts/evaluator-state:/state
+    networks:
+      - target_network

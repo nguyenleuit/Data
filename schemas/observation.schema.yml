@@ -1,0 +1,21 @@
+type: object
+required:
+  - case_id
+  - success
+  - runtime_tested
+  - objective_type
+  - evidence
+  - comparison
+properties:
+  case_id:
+    type: string
+  success:
+    type: boolean
+  runtime_tested:
+    type: boolean
+  objective_type:
+    type: string
+  evidence:
+    type: object
+  comparison:
+    type: object

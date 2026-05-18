@@ -1,0 +1,45 @@
+type: object
+required:
+  - case_id
+  - title
+  - target
+  - scope
+  - objective
+properties:
+  case_id:
+    type: string
+  title:
+    type: string
+  target:
+    type: object
+    required:
+      - url
+      - protocol
+    properties:
+      url:
+        type: string
+      protocol:
+        enum: [http, https, tcp, telnet, udp, ftp]
+      host:
+        type: string
+      port:
+        type: integer
+      exposed_ports:
+        type: array
+  scope:
+    type: object
+    required:
+      - allowed_hosts
+      - allowed_ports
+      - prohibited
+    properties:
+      allowed_hosts:
+        type: array
+      allowed_ports:
+        type: array
+      prohibited:
+        type: array
+  objective:
+    type: string
+  constraints:
+    type: array

@@ -1,0 +1,88 @@
+type: object
+required:
+  - case_id
+  - split
+  - severity
+  - product
+  - sources
+  - fidelity
+  - runtime
+  - objective
+  - status
+properties:
+  case_id:
+    type: string
+    pattern: '^CVE-[0-9]{4}-[0-9]+$'
+  split:
+    enum: [train, test]
+  severity:
+    enum: [critical, high, medium, low]
+  product:
+    type: object
+    required:
+      - name
+      - family
+      - component
+      - vulnerable_version
+      - fixed_control
+  sources:
+    type: object
+  fidelity:
+    type: object
+    required:
+      - level
+      - rationale
+      - limitations
+    properties:
+      level:
+        enum: [faithful, near-faithful, cve-specific-emulated]
+      limitations:
+        type: array
+  runtime:
+    type: object
+    required:
+      - compose_file
+      - host_bind
+      - target_port
+      - evaluator_port
+      - required_services
+      - optional_services
+      - protocol
+      - target_url
+      - container_target_port
+    properties:
+      compose_file:
+        type: string
+      host_bind:
+        const: 127.0.0.1
+      target_port:
+        type: integer
+      evaluator_port:
+        type: integer
+      required_services:
+        type: array
+      optional_services:
+        type: array
+      protocol:
+        enum: [http, https, tcp, telnet, udp, ftp]
+      target_url:
+        type: string
+      container_target_port:
+        type: integer
+  objective:
+    type: object
+    required:
+      - type
+      - attack_vector
+      - success_condition
+      - proof_method
+  status:
+    type: object
+    required:
+      - lab_state
+      - fixed_control
+    properties:
+      lab_state:
+        enum: [pending-rebuild, draft, runnable, retired, blocked-metadata-mismatch, blocked-external-dependency, blocked-unavailable-upstream, blocked-research-unavailable, unbuildable]
+      fixed_control:
+        enum: [present, deferred, not-required-for-train]

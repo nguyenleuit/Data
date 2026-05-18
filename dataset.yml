@@ -1,0 +1,31 @@
+dataset:
+  name: auto-pentest-cve-dataset
+  version: 0.1.0
+  status: validated-local-labs
+  purpose: Train and evaluate autonomous penetration-testing frameworks on controlled CVE labs.
+  frameworks:
+    - HackSynth
+    - PentestGPT
+    - VulnBot
+    - PentestAgent
+  splits:
+    train:
+      path: splits/train
+      status: runnable
+      intended_use: framework development, prompt tuning, debugging, and future training cases
+    test:
+      path: splits/test
+      status: runnable
+      intended_use: held-out benchmark evaluation
+      source_list: splits/test/CVE_test.md
+  visibility_policy:
+    public_to_framework:
+      - public_task.yml
+      - target runtime endpoint
+    hidden_from_framework:
+      - manifest.yml
+      - eval.yml
+      - oracle/
+      - artifacts/
+      - common/evaluator/
+      - common/secrets/

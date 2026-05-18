@@ -1,0 +1,6 @@
+networks:
+  target_network:
+    driver: bridge
+  private_network:
+    driver: bridge
+    internal: true
